@@ -1,0 +1,9 @@
+.gitignore
+dist
+README*
+NEWS*
+FAQ*
+.RData
+.Rhistory
+^.*\.Rproj$
+^\.Rproj\.user$

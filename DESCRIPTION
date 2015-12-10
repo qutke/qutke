@@ -1,0 +1,22 @@
+Package: qutke
+Title: R Package for QUTKE project
+Type: Package
+Description: R Package for QUTKE project provided by Qutke.com.
+Authors@R: c(
+    person("Dan", "Zhang", role = c("aut", "cre"), email = "zhangd@qutke.com"),
+    person("Yong", "Zhou", role = "aut", email = "zhouy@qutke.com")
+    )
+Version: 0.1
+Depends:
+    R (>= 3.1.1)
+Imports:
+    httr,
+    RJSONIO
+License: GPL-2
+LazyData: TRUE
+Date: 2015-12-02
+URL: http://qutke.com
+Collate:
+    'dao.r'
+    'main.r'
+    'util.r'
