@@ -32,7 +32,7 @@ init <- function (key) {
   api <- paste(apiurl,'validate',sep="/")
   if(is.null(api))  stop("ERROR: data is not match!")
   
-  args<-list(key=key,version=versionno)
+  args<-list(key=key,version=versionno,opentype='qutke')
   query<-compose_query(args)
   addr<-paste(api,query,sep="?")
   addr<-URLencode(addr)
