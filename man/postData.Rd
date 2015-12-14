@@ -4,7 +4,7 @@
 \alias{postData}
 \title{POST data from HTTP}
 \usage{
-postData(df, name = NULL, key = NULL)
+postData(df, name = NULL, key)
 }
 \arguments{
 \item{df}{data.frame}

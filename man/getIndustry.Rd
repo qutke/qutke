@@ -5,7 +5,7 @@
 \title{Get Date date}
 \usage{
 getIndustry(data, qtid = c(), date = NULL, CompanyCode = NULL,
-  SW1 = NULL, SW2 = NULL, SW3 = NULL, key = NULL)
+  SW1 = NULL, SW2 = NULL, SW3 = NULL, key)
 }
 \arguments{
 \item{data}{character}

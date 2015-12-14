@@ -4,7 +4,7 @@
 \alias{getStockBeta}
 \title{Get getStockBeta data}
 \usage{
-getStockBeta(qtid = c(), date = c(), key = NULL)
+getStockBeta(qtid = c(), date = c(), key)
 }
 \arguments{
 \item{qtid}{vector}

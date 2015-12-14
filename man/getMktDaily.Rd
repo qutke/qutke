@@ -4,7 +4,7 @@
 \alias{getMktDaily}
 \title{Get getMktDaily data}
 \usage{
-getMktDaily(qtid = c(), date = c(), key = NULL)
+getMktDaily(qtid = c(), date = c(), key)
 }
 \arguments{
 \item{qtid}{vector}

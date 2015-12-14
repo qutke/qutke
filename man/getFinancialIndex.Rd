@@ -4,15 +4,12 @@
 \alias{getFinancialIndex}
 \title{Get getFinancialIndex data}
 \usage{
-getFinancialIndex(qtid = c(), date = c(), CompanyCode = NULL,
-  key = NULL)
+getFinancialIndex(qtid = c(), date = c(), key)
 }
 \arguments{
 \item{qtid}{vector}
 
 \item{date}{vector}
-
-\item{CompanyCode}{character}
 
 \item{key}{character}
 }

@@ -4,7 +4,7 @@
 \alias{getSecuritiesMargin}
 \title{Get getSecuritiesMargin data}
 \usage{
-getSecuritiesMargin(date = c(), SecuMarket = NULL, key = NULL)
+getSecuritiesMargin(date = c(), SecuMarket = NULL, key)
 }
 \arguments{
 \item{date}{vector}

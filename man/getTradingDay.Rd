@@ -4,7 +4,7 @@
 \alias{getTradingDay}
 \title{Get getTradingDay}
 \usage{
-getTradingDay(key = NULL)
+getTradingDay(key)
 }
 \arguments{
 \item{key}{character}

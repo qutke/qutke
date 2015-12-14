@@ -4,7 +4,7 @@
 \alias{getDate}
 \title{Get Date date}
 \usage{
-getDate(data, startdate = NULL, enddate = Sys.Date(), key = NULL)
+getDate(data, startdate = NULL, enddate = Sys.Date(), key)
 }
 \arguments{
 \item{data}{character}

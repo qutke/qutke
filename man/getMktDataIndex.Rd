@@ -4,7 +4,7 @@
 \alias{getMktDataIndex}
 \title{Get MktDataIndex data}
 \usage{
-getMktDataIndex(qtid = c(), date = c(), key = NULL)
+getMktDataIndex(qtid = c(), date = c(), key)
 }
 \arguments{
 \item{qtid}{vector}

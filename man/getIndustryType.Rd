@@ -4,13 +4,13 @@
 \alias{getIndustryType}
 \title{Get getIndustryType data}
 \usage{
-getIndustryType(qtid = c(), date = NULL, CompanyCode = NULL, sw1 = NULL,
-  sw2 = NULL, sw3 = NULL, key = NULL)
+getIndustryType(date, qtid = c(), CompanyCode = NULL, sw1 = NULL,
+  sw2 = NULL, sw3 = NULL, key)
 }
 \arguments{
-\item{qtid}{vector}
+\item{date}{Date require}
 
-\item{date}{Date}
+\item{qtid}{vector}
 
 \item{CompanyCode}{character}
 
@@ -20,7 +20,7 @@ getIndustryType(qtid = c(), date = NULL, CompanyCode = NULL, sw1 = NULL,
 
 \item{sw3}{character}
 
-\item{key}{character}
+\item{key}{character require}
 }
 \value{
 data.frame

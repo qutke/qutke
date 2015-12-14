@@ -4,7 +4,7 @@
 \alias{getDaily}
 \title{Get Daily Quote data}
 \usage{
-getDaily(data, qtid = c(), date = c(), key = NULL)
+getDaily(data, qtid = c(), date = c(), key)
 }
 \arguments{
 \item{data}{character}

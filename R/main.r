@@ -48,17 +48,17 @@ init <- function (key) {
 #' 
 #' @examples
 #' \dontrun{
-#' getMD(data='keyMap',key=key)
 #' getMD(data='keyMap',qtid='000001.SZ,000001.SH',key=key)
 #' getMD(data='keyMap',qtid=c('000001.SZ','000001.SH'),key=key)
 #' }
 #' 
 #' @export 
-getMD<-function(data,qtid=c(),key=NULL){
-  if(is.null(key)) stop("ERROR: Key is not empty!")
+getMD<-function(data,qtid,key){
+  
+  qtids<-qtid2String(qtid)
   
   if(data=='keyMap') {
-    return(getKeyMap(qtid=qtid2String(qtid),key=key))
+    return(getKeyMap(qtid=qtids,key=key))
   }
   
   invisible()
@@ -88,8 +88,8 @@ getMD<-function(data,qtid=c(),key=NULL){
 #' }
 #' 
 #' @export 
-getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NULL,key=NULL){
-  if(is.null(key)) stop("ERROR: Key is not empty!")
+getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NULL,key){
+  qtids<-qtid2String(qtid)
   
   if(is.null(qtid) & is.null(startdate) & is.null(enddate) & is.null(SecuMarket)){
     enddate<-Sys.Date()
@@ -99,13 +99,13 @@ getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NUL
   dates<-getDate('tradingDay',startdate=startdate,enddate=enddate,key=key)  
   
   if(data=='mktDaily') 
-    return(getMktDaily(qtid=qtid,date=dates,key=key))    
+    return(getMktDaily(qtid=qtids,date=dates,key=key))    
   
   if(data=='mktFwdDaily') 
-    return(getFwdMktDaily(qtid=qtid,date=dates,key=key))
+    return(getFwdMktDaily(qtid=qtids,date=dates,key=key))
   
   if(data=='mktDataIndex') 
-    return(getMktDataIndex(qtid=qtid,date=dates,key=key))
+    return(getMktDataIndex(qtid=qtids,date=dates,key=key))
   
   if(data=='securitiesMargin') 
     return(getSecuritiesMargin(SecuMarket=SecuMarket,date=dates,key))
@@ -133,8 +133,8 @@ getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NUL
 #' }
 #' 
 #' @export 
-getIndustry<-function(data,qtid=c(),date=NULL,CompanyCode=NULL,SW1=NULL,SW2=NULL,SW3=NULL,key=NULL){
-  if(is.null(key)) stop("ERROR: Key is not empty!")
+getIndustry<-function(data,qtid=c(),date=NULL,CompanyCode=NULL,SW1=NULL,SW2=NULL,SW3=NULL,key){
+  qtids<-qtid2String(qtid)
   
   if(data=='industryType') {
     return(getIndustryType(qtid=qtid,date=date,CompanyCode=CompanyCode,sw1=SW1,sw2=SW2,sw3=SW3,key=key))
@@ -159,9 +159,7 @@ getIndustry<-function(data,qtid=c(),date=NULL,CompanyCode=NULL,SW1=NULL,SW2=NULL
 #' }
 #' 
 #' @export 
-getDate<-function(data,startdate=NULL,enddate=Sys.Date(),key=NULL){
-  if(is.null(key)) stop("ERROR: Key is not empty!")
-  
+getDate<-function(data,startdate=NULL,enddate=Sys.Date(),key){
   if(!is.null(startdate)) startdate<-as.Date(startdate)
   if(!is.null(enddate)) enddate<-as.Date(enddate)
   
@@ -183,7 +181,6 @@ getDate<-function(data,startdate=NULL,enddate=Sys.Date(),key=NULL){
 #' @param data character
 #' @param startdate Date
 #' @param enddate Date
-#' @param CompanyCode numeric
 #' @param key character
 #' @author Dan Zhang
 #' 
@@ -193,14 +190,13 @@ getDate<-function(data,startdate=NULL,enddate=Sys.Date(),key=NULL){
 #' getQtStock(data='stockBeta',startdate='2015-10-01',enddate='2015-10-10',key=key)
 #' getQtStock(data='financialIndex',qtid=c('000001.SZ','000002.SZ'),key=key)
 #' getQtStock(data='financialIndex',startdate='2015-10-10',enddate='2015-12-30',key=key)
-#' getQtStock(data='financialIndex',CompanyCode=6,key=key)
 #' }
 #' 
 #' @export 
-getQtStock<-function(data,qtid=c(),startdate=NULL,enddate=NULL,CompanyCode=NULL,key=NULL){
-  if(is.null(key)) stop("ERROR: Key is not empty!")
+getQtStock<-function(data,qtid=c(),startdate=NULL,enddate=NULL,key){
+  qtids<-qtid2String(qtid)
   
-  if(is.null(qtid) & is.null(startdate) & is.null(enddate) & is.null(CompanyCode)){
+  if(is.null(qtid) & is.null(startdate) & is.null(enddate)){
     enddate<-Sys.Date()
     startdate<-enddate-7
   }
@@ -212,7 +208,7 @@ getQtStock<-function(data,qtid=c(),startdate=NULL,enddate=NULL,CompanyCode=NULL,
   }
   
   if(data=='financialIndex') {
-    return(getFinancialIndex(qtid=qtid,date=dates,CompanyCode=CompanyCode,key=key))
+    return(getFinancialIndex(qtid=qtid,date=dates,key=key))
   } 
 
   invisible()
@@ -245,10 +241,9 @@ getQtBond<-function(){
 #' }
 #' 
 #' @export 
-postData<-function(df,name=NULL,key=NULL){
-  if(is.null(key)) stop("ERROR: Key is not empty!")
-  if(nrow(df)>2000) stop("ERROR: Data rows is too large!")
-  if(ncol(df)>15) stop("ERROR: Data columns is too large!")
+postData<-function(df,name=NULL,key){
+  if(nrow(df)>2000) stop("ERROR: Rows is too large!")
+  if(ncol(df)>15) stop("ERROR: Columns is too large!")
   
   url<-paste(apiurl,'adduserdata',key,sep="/")
   json<-list(data=toJSON(df),title=name)

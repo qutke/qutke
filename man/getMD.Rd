@@ -4,7 +4,7 @@
 \alias{getMD}
 \title{Get mapping table}
 \usage{
-getMD(data, qtid = c(), key = NULL)
+getMD(data, qtid, key)
 }
 \arguments{
 \item{data}{character}
@@ -18,7 +18,6 @@ Get mapping table
 }
 \examples{
 \dontrun{
-getMD(data='keyMap',key=key)
 getMD(data='keyMap',qtid='000001.SZ,000001.SH',key=key)
 getMD(data='keyMap',qtid=c('000001.SZ','000001.SH'),key=key)
 }

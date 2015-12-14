@@ -4,8 +4,8 @@
 \alias{getKeyMap}
 \title{Get getKeyMap data}
 \usage{
-getKeyMap(qtid = NULL, SecuCode = NULL, CompanyCode = NULL,
-  ChiName = NULL, SecuMarket = NULL, key = NULL)
+getKeyMap(qtid = c(), SecuCode = NULL, CompanyCode = NULL,
+  ChiName = NULL, SecuMarket = NULL, key)
 }
 \arguments{
 \item{qtid}{character}
@@ -18,7 +18,7 @@ getKeyMap(qtid = NULL, SecuCode = NULL, CompanyCode = NULL,
 
 \item{SecuMarket}{numeric}
 
-\item{key}{character}
+\item{key}{character require}
 }
 \value{
 data.frame

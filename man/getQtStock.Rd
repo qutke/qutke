@@ -4,8 +4,7 @@
 \alias{getQtStock}
 \title{Get Date date}
 \usage{
-getQtStock(data, qtid = c(), startdate = NULL, enddate = NULL,
-  CompanyCode = NULL, key = NULL)
+getQtStock(data, qtid = c(), startdate = NULL, enddate = NULL, key)
 }
 \arguments{
 \item{data}{character}
@@ -15,8 +14,6 @@ getQtStock(data, qtid = c(), startdate = NULL, enddate = NULL,
 \item{startdate}{Date}
 
 \item{enddate}{Date}
-
-\item{CompanyCode}{numeric}
 
 \item{key}{character}
 }
@@ -29,7 +26,6 @@ getQtStock(data='stockBeta',qtid=c('000001.SZ','000002.SZ'),key=key)
 getQtStock(data='stockBeta',startdate='2015-10-01',enddate='2015-10-10',key=key)
 getQtStock(data='financialIndex',qtid=c('000001.SZ','000002.SZ'),key=key)
 getQtStock(data='financialIndex',startdate='2015-10-10',enddate='2015-12-30',key=key)
-getQtStock(data='financialIndex',CompanyCode=6,key=key)
 }
 }
 \author{
