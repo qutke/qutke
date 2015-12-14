@@ -4,7 +4,7 @@
 \name{apiurl}
 \alias{apiurl}
 \title{Server Address}
-\format{\preformatted{ chr "https://datas.qutke.com/api/opendata"
+\format{\preformatted{ chr "https://datas.qutke.com/api"
 }}
 \usage{
 apiurl

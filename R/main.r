@@ -5,7 +5,7 @@
 NULL
 
 #' Server Address
-apiurl<-'https://datas.qutke.com/api/opendata'
+apiurl<-'https://datas.qutke.com/api'
 
 # Global Variables
 e<-new.env()
@@ -29,12 +29,16 @@ init <- function (key) {
   
   e$TRADING<-getTradingDay(key = key)
   
-#   args<-list(key=key,version=versionno)
-#   query<-compose_query(args)
-#   addr<-paste(api,query,sep="?")
-#   addr<-URLencode(addr)
-#   result <- read.table(addr,sep=",",header=TRUE,fileEncoding = "utf-8", encoding = "utf-8")
-#   print(result$message)
+  api <- paste(apiurl,'validate',sep="/")
+  if(is.null(api))  stop("ERROR: data is not match!")
+  
+  args<-list(key=key,version=versionno)
+  query<-compose_query(args)
+  addr<-paste(api,query,sep="?")
+  addr<-URLencode(addr)
+  result <- (read.table(addr,sep=",",header=TRUE,fileEncoding = "utf-8", encoding = "utf-8"));
+  
+  print(result$message)
   invisible()
 }
 
@@ -246,6 +250,7 @@ postData<-function(df,name=NULL,key){
   if(ncol(df)>15) stop("ERROR: Columns is too large!")
   
   url<-paste(apiurl,'adduserdata',key,sep="/")
+  
   json<-list(data=toJSON(df),title=name)
   
   res<-POST(url, body=json, encode="json")

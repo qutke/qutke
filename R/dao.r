@@ -231,7 +231,8 @@ getDaily<-function(data,qtid=c(),date=c(),key){
 #' @author Dan Zhang
 getData<-function(args){ 
   query<-compose_query(args)
-  addr<-URLencode(paste(apiurl,query,sep="?"))
+  url<-paste(apiurl,'opendata',sep="/")
+  addr<-URLencode(paste(url,query,sep="?"))
   print(addr)
   return(read.table(addr,sep=",",quote='\"',header=TRUE,fileEncoding="utf-8"))
 }
