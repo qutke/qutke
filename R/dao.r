@@ -175,9 +175,7 @@ getMktDataIndex<-function(qtid=c(),date=c(),key){
 #' 
 #' @return data.frame
 #' @author Dan Zhang
-getDaily<-function(data,qtid=c(),date=c(),key){
-  if(is.null(key)) stop("ERROR: Key is not empty!")
-  
+getDaily<-function(data,qtid=c(),date=c(),key){  
   args<-list(data=data,key=key)
   
   dl<-list()
@@ -233,7 +231,7 @@ getData<-function(args){
   query<-compose_query(args)
   url<-paste(apiurl,'opendata',sep="/")
   addr<-URLencode(paste(url,query,sep="?"))
-  print(addr)
+  #print(addr)
   return(read.table(addr,sep=",",quote='\"',header=TRUE,fileEncoding="utf-8"))
 }
 
