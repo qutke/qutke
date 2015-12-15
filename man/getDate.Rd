@@ -4,7 +4,7 @@
 \alias{getDate}
 \title{Get Date date}
 \usage{
-getDate(data, startdate = NULL, enddate = Sys.Date(), key)
+getDate(data, startdate = NULL, enddate = NULL, key)
 }
 \arguments{
 \item{data}{character}
@@ -21,7 +21,6 @@ Get Date date
 \examples{
 \dontrun{
 getDate(data='tradingDay',key=key)
-getDate(data='tradingDay',startdate='2015-10-10',key=key)
 getDate(data='tradingDay',startdate='2015-10-10',enddate='2015-12-30',key=key)
 }
 }

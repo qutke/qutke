@@ -43,10 +43,17 @@ system <- function(x){
 
 #' qtid vector to character
 #' @param qtid character
-#' @export
 qtid2String<-function(qtid=NULL){
   if(!is.null(qtid) & is.character(qtid) & length(qtid)>1){
     qtid<-paste(qtid,sep="",collapse=",")
+  }
+  return(qtid)
+}
+#' qtid character to vector
+#' @param qtid character
+qtid2c<-function(qtid=NULL){
+  if(!is.null(qtid) & is.character(qtid) & length(qtid)<2){
+    qtid<-unlist(strsplit(qtid,','))
   }
   return(qtid)
 }
@@ -65,4 +72,27 @@ as.qtDate<-function(val=Sys.Date()){
   as.character(as.numeric(as.POSIXct(as.Date(val)))*1000)
 }
 
+# valid startdate and enddate both NULL or Not NULL.
+validDate<-function(startdate=NULL,enddate=NULL){
+  if(!is.null(startdate) & !is.null(enddate)) {
+    startdate<-as.Date(startdate)
+    enddate<-as.Date(enddate)
+  }else if(!is.null(startdate) & is.null(enddate)){
+    stop("Error: enddate is emtpy!") 
+  }else if(is.null(startdate) & !is.null(enddate)){
+    stop("Error: startdate is emtpy!") 
+  }
+  
+  return(list(startdate=startdate,enddate=enddate))
+}
+
+# validate startdate and enddate, return dates
+getDate2<-function(startdate=NULL,enddate=NULL,key=key){
+  if(is.null(startdate) & is.null(enddate)){
+    return(NULL)
+  }
+  
+  argsDates<-validDate(startdate,enddate)
+  return(getDate('tradingDay',startdate=argsDates$startdate,enddate=argsDates$enddate,key=key))
+}
 

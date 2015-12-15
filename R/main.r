@@ -30,13 +30,13 @@ init <- function (key) {
   e$TRADING<-getTradingDay(key = key)
   
   api <- paste(apiurl,'validate',sep="/")
-  if(is.null(api))  stop("ERROR: data is not match!")
+  if(is.null(api)) stop("ERROR: data is not match!")
   
   args<-list(key=key,version=versionno,opentype='qutke')
   query<-compose_query(args)
   addr<-paste(api,query,sep="?")
   addr<-URLencode(addr)
-  result <- (read.table(addr,sep=",",header=TRUE,fileEncoding = "utf-8", encoding = "utf-8"));
+  result <- read.table(addr,sep=",",header=TRUE,fileEncoding = "utf-8", encoding = "utf-8")
   
   print(result$message)
   invisible()
@@ -93,14 +93,11 @@ getMD<-function(data,qtid,key){
 #' 
 #' @export 
 getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NULL,key){
-  qtids<-qtid2String(qtid)
-  
   if(is.null(qtid) & is.null(startdate) & is.null(enddate) & is.null(SecuMarket)){
-    enddate<-Sys.Date()
-    startdate<-enddate-7
+    stop("Error: Need parameters qtid, SecuMarket or (startdate,enddate)")
   }
-  
-  dates<-getDate('tradingDay',startdate=startdate,enddate=enddate,key=key)  
+  dates<-getDate2(startdate,enddate,key=key)
+  qtids<-qtid2c(qtid)  
   
   if(data=='mktDaily') 
     return(getMktDaily(qtid=qtids,date=dates,key=key))    
@@ -117,6 +114,7 @@ getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NUL
   invisible()
 }
 
+
 #' Get Industry date
 #' @title Get Date date
 #' @param data character
@@ -132,20 +130,20 @@ getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NUL
 #' @examples
 #' \dontrun{
 #' getIndustry(data='industryType',date='2015-12-02',key=key)
-#' getIndustry(data='industryType',qtid=c('000001.SZ','000002.SZ'),key=key)
-#' getIndustry(data='industryType',CompanyCode=6,key=key)
+#' getIndustry(data='industryType',date='2015-12-02',qtid=c('000001.SZ','000002.SZ'),key=key)
+#' getIndustry(data='industryType',date='2015-12-02',CompanyCode=6,key=key)
 #' }
 #' 
 #' @export 
-getIndustry<-function(data,qtid=c(),date=NULL,CompanyCode=NULL,SW1=NULL,SW2=NULL,SW3=NULL,key){
-  qtids<-qtid2String(qtid)
+getIndustry<-function(data,date,qtid=c(),CompanyCode=NULL,SW1=NULL,SW2=NULL,SW3=NULL,key){
+  qtids<-qtid2c(qtid)  
   
   if(data=='industryType') {
-    return(getIndustryType(qtid=qtid,date=date,CompanyCode=CompanyCode,sw1=SW1,sw2=SW2,sw3=SW3,key=key))
+    return(getIndustryType(date=date,qtid=qtid,CompanyCode=CompanyCode,sw1=SW1,sw2=SW2,sw3=SW3,key=key))
   }
+  
+  invisible()
 }
-
-
 
 #' Get Date date
 #' @title Get Date date
@@ -158,20 +156,18 @@ getIndustry<-function(data,qtid=c(),date=NULL,CompanyCode=NULL,SW1=NULL,SW2=NULL
 #' @examples
 #' \dontrun{
 #' getDate(data='tradingDay',key=key)
-#' getDate(data='tradingDay',startdate='2015-10-10',key=key)
 #' getDate(data='tradingDay',startdate='2015-10-10',enddate='2015-12-30',key=key)
 #' }
 #' 
 #' @export 
-getDate<-function(data,startdate=NULL,enddate=Sys.Date(),key){
-  if(!is.null(startdate)) startdate<-as.Date(startdate)
-  if(!is.null(enddate)) enddate<-as.Date(enddate)
+getDate<-function(data,startdate=NULL,enddate=NULL,key){    
+  argsDates<-validDate(startdate,enddate)
   
   if(data=='tradingDay') {
     if(is.null(e$TRADING)) e$TRADING<-getTradingDay(key)
     
-    if(!is.null(startdate) & !is.null(enddate)){
-      return(e$TRADING[which(e$TRADING>=startdate & e$TRADING<=enddate)])
+    if(!is.null(argsDates$startdate) & !is.null(argsDates$enddate)){
+      return(e$TRADING[which(e$TRADING>=argsDates$startdate & e$TRADING<=argsDates$enddate)])
     }    
     return(e$TRADING)
   }
@@ -198,14 +194,11 @@ getDate<-function(data,startdate=NULL,enddate=Sys.Date(),key){
 #' 
 #' @export 
 getQtStock<-function(data,qtid=c(),startdate=NULL,enddate=NULL,key){
-  qtids<-qtid2String(qtid)
-  
   if(is.null(qtid) & is.null(startdate) & is.null(enddate)){
-    enddate<-Sys.Date()
-    startdate<-enddate-7
+    stop("Error: Need parameters qtid or (startdate,enddate)")
   }
-  
-  dates<-getDate('tradingDay',startdate=startdate,enddate=enddate,key=key)  
+  qtids<-qtid2c(qtid)
+  dates<-getDate2(startdate,enddate)
   
   if(data=='stockBeta') {
     return(getStockBeta(qtid=qtid,date=dates,key=key))

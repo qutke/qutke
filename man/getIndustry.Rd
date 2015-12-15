@@ -4,15 +4,15 @@
 \alias{getIndustry}
 \title{Get Date date}
 \usage{
-getIndustry(data, qtid = c(), date = NULL, CompanyCode = NULL,
-  SW1 = NULL, SW2 = NULL, SW3 = NULL, key)
+getIndustry(data, date, qtid = c(), CompanyCode = NULL, SW1 = NULL,
+  SW2 = NULL, SW3 = NULL, key)
 }
 \arguments{
 \item{data}{character}
 
-\item{qtid}{vector}
-
 \item{date}{Date}
+
+\item{qtid}{vector}
 
 \item{CompanyCode}{character}
 
@@ -30,8 +30,8 @@ Get Industry date
 \examples{
 \dontrun{
 getIndustry(data='industryType',date='2015-12-02',key=key)
-getIndustry(data='industryType',qtid=c('000001.SZ','000002.SZ'),key=key)
-getIndustry(data='industryType',CompanyCode=6,key=key)
+getIndustry(data='industryType',date='2015-12-02',qtid=c('000001.SZ','000002.SZ'),key=key)
+getIndustry(data='industryType',date='2015-12-02',CompanyCode=6,key=key)
 }
 }
 \author{
