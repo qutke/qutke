@@ -15,7 +15,7 @@ Imports:
 License: GPL-2
 LazyData: TRUE
 Date: 2015-12-02
-URL: http://qutke.com
+URL: https://qutke.com
 Collate:
     'dao.r'
     'main.r'
