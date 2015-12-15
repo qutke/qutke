@@ -4,7 +4,7 @@
 #' @name qutke
 NULL
 
-# Server Address
+#' Server Address
 apiurl<-'https://datas.qutke.com/api'
 
 # Global Variables
