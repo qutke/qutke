@@ -1,14 +1,14 @@
-#' Get getKeyMap data
-#' @title Get getKeyMap data
-#' @param qtid character
-#' @param SecuCode character
-#' @param CompanyCode character
-#' @param ChiName character
-#' @param SecuMarket numeric
-#' @param key character require
-#' 
-#' @return data.frame
-#' @author Dan Zhang
+# Get getKeyMap data
+# @title Get getKeyMap data
+# @param qtid character
+# @param SecuCode character
+# @param CompanyCode character
+# @param ChiName character
+# @param SecuMarket numeric
+# @param key character require
+# 
+# @return data.frame
+# @author Dan Zhang
 #
 getKeyMap<-function(qtid=c(),SecuCode=NULL,CompanyCode=NULL,ChiName=NULL,SecuMarket=NULL,key){  
   
@@ -26,19 +26,19 @@ getKeyMap<-function(qtid=c(),SecuCode=NULL,CompanyCode=NULL,ChiName=NULL,SecuMar
   return(getData(args))
 }
 
-#' Get getIndustryType data
-#' @title Get getIndustryType data
-#' 
-#' @param date Date require
-#' @param qtid vector
-#' @param CompanyCode character
-#' @param sw1 character
-#' @param sw2 character
-#' @param sw3 character
-#' @param key character require
-#' 
-#' @return data.frame
-#' @author Dan Zhang
+# Get getIndustryType data
+# @title Get getIndustryType data
+# 
+# @param date Date require
+# @param qtid vector
+# @param CompanyCode character
+# @param sw1 character
+# @param sw2 character
+# @param sw3 character
+# @param key character require
+# 
+# @return data.frame
+# @author Dan Zhang
 #
 getIndustryType<-function(date,qtid=c(),CompanyCode=NULL,sw1=NULL,sw2=NULL,sw3=NULL,key){  
   args<-list(data='industryType',key=key)
@@ -69,26 +69,26 @@ getIndustryType<-function(date,qtid=c(),CompanyCode=NULL,sw1=NULL,sw2=NULL,sw3=N
   return(df)
 }
 
-#' Get getFinancialIndex data
-#' @title Get getFinancialIndex data
-#' @param qtid vector
-#' @param date vector
-#' @param key character
-#' 
-#' @return data.frame
-#' @author Dan Zhang
+# Get getFinancialIndex data
+# @title Get getFinancialIndex data
+# @param qtid vector
+# @param date vector
+# @param key character
+# 
+# @return data.frame
+# @author Dan Zhang
 #
 getFinancialIndex<-function(qtid=c(),date=c(),key){  
   return(getDaily('financialIndex',qtid,date,key))
 }
 
 
-#' Get getTradingDay
-#' @title Get getTradingDay
-#' @param key character
-#' 
-#' @return data.frame
-#' @author Dan Zhang
+# Get getTradingDay
+# @title Get getTradingDay
+# @param key character
+# 
+# @return data.frame
+# @author Dan Zhang
 #
 getTradingDay<-function(key){
   args<-list(data='tradingDay',key=key)
@@ -97,27 +97,27 @@ getTradingDay<-function(key){
 }
 
 
-#' Get getStockBeta data
-#' @title Get getStockBeta data
-#' @param qtid vector
-#' @param date vector
-#' @param key character
-#' 
-#' @return data.frame
-#' @author Dan Zhang
+# Get getStockBeta data
+# @title Get getStockBeta data
+# @param qtid vector
+# @param date vector
+# @param key character
+# 
+# @return data.frame
+# @author Dan Zhang
 #
 getStockBeta<-function(qtid=c(),date=c(),key){
   return(getDaily('stockBeta',qtid,date,key))
 }
 
-#' Get getSecuritiesMargin data
-#' @title Get getSecuritiesMargin data
-#' @param date vector
-#' @param SecuMarket character
-#' @param key character
-#' 
-#' @return data.frame
-#' @author Dan Zhang
+# Get getSecuritiesMargin data
+# @title Get getSecuritiesMargin data
+# @param date vector
+# @param SecuMarket character
+# @param key character
+# 
+# @return data.frame
+# @author Dan Zhang
 #
 getSecuritiesMargin<-function(date=c(),SecuMarket=NULL,key){  
   args<-list(data='securitiesMargin',key=key)
@@ -135,55 +135,55 @@ getSecuritiesMargin<-function(date=c(),SecuMarket=NULL,key){
   return(df)
 }
 
-#' Get getMktDaily data
-#' @title Get getMktDaily data
-#' @param qtid vector
-#' @param date vector
-#' @param key character
-#' 
-#' @return data.frame
-#' @author Dan Zhang
+# Get getMktDaily data
+# @title Get getMktDaily data
+# @param qtid vector
+# @param date vector
+# @param key character
+# 
+# @return data.frame
+# @author Dan Zhang
 #
 getMktDaily<-function(qtid=c(),date=c(),key){
   return(getDaily('mktDaily',qtid,date,key))
 }
 
-#' Get FwdMktDaily data
-#' @title Get FwdMktDaily data
-#' @param qtid vector
-#' @param date vector
-#' @param key character
-#' 
-#' @return data.frame
-#' @author Dan Zhang
+# Get FwdMktDaily data
+# @title Get FwdMktDaily data
+# @param qtid vector
+# @param date vector
+# @param key character
+# 
+# @return data.frame
+# @author Dan Zhang
 #
 getFwdMktDaily<-function(qtid=c(),date=c(),key){
   return(getDaily('mktFwdDaily',qtid,date,key))
 }
 
-#' Get MktDataIndex data
-#' @title Get MktDataIndex data
-#' @param qtid vector
-#' @param date vector
-#' @param key character
-#' 
-#' @return data.frame
-#' @author Dan Zhang
+# Get MktDataIndex data
+# @title Get MktDataIndex data
+# @param qtid vector
+# @param date vector
+# @param key character
+# 
+# @return data.frame
+# @author Dan Zhang
 #
 getMktDataIndex<-function(qtid=c(),date=c(),key){
   return(getDaily('mktDataIndex',qtid,date,key))
 }
 
 
-#' Get Daily Quote data
-#' @title Get Daily Quote data
-#' @param data character
-#' @param qtid vector
-#' @param date vector
-#' @param key character
-#' 
-#' @return data.frame
-#' @author Dan Zhang
+# Get Daily Quote data
+# @title Get Daily Quote data
+# @param data character
+# @param qtid vector
+# @param date vector
+# @param key character
+# 
+# @return data.frame
+# @author Dan Zhang
 #
 getDaily<-function(data,qtid=c(),date=c(),key){  
   args<-list(data=data,key=key)
@@ -231,12 +231,12 @@ getDaily<-function(data,qtid=c(),date=c(),key){
 }
 
 
-#' Get qutke data from HTTP
-#' @title Get qutke data from HTTP
-#' @param args list
-#' 
-#' @return data.frame
-#' @author Dan Zhang
+# Get qutke data from HTTP
+# @title Get qutke data from HTTP
+# @param args list
+# 
+# @return data.frame
+# @author Dan Zhang
 #
 getData<-function(args){ 
   query<-compose_query(args)

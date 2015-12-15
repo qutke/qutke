@@ -36,7 +36,7 @@ has_name <- function(x) {
   
   !is.na(nms) & nms != ""
 }
-#' Utils
+#' Override base system method
 #' @param x character 
 #' @export
 system <- function(x){
@@ -44,8 +44,8 @@ system <- function(x){
 }
 
 
-#' qtid vector to character
-#' @param qtid character
+# qtid vector to character
+# @param qtid character
 #
 qtid2String<-function(qtid=NULL){
   if(!is.null(qtid) & is.character(qtid) & length(qtid)>1){
@@ -53,8 +53,8 @@ qtid2String<-function(qtid=NULL){
   }
   return(qtid)
 }
-#' qtid character to vector
-#' @param qtid character
+# qtid character to vector
+# @param qtid character
 #
 qtid2c<-function(qtid=NULL){
   if(!is.null(qtid) & is.character(qtid) & length(qtid)<2){

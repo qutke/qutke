@@ -2,7 +2,7 @@
 % Please edit documentation in R/util.r
 \name{system}
 \alias{system}
-\title{Utils}
+\title{Override base system method}
 \usage{
 system(x)
 }
@@ -10,6 +10,6 @@ system(x)
 \item{x}{character}
 }
 \description{
-Utils
+Override base system method
 }
 
