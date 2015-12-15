@@ -9,6 +9,7 @@
 #' 
 #' @return data.frame
 #' @author Dan Zhang
+#
 getKeyMap<-function(qtid=c(),SecuCode=NULL,CompanyCode=NULL,ChiName=NULL,SecuMarket=NULL,key){  
   
   if(is.null(qtid) & is.null(SecuCode) & is.null(CompanyCode) & is.null(ChiName) & is.null(SecuMarket)){
@@ -38,6 +39,7 @@ getKeyMap<-function(qtid=c(),SecuCode=NULL,CompanyCode=NULL,ChiName=NULL,SecuMar
 #' 
 #' @return data.frame
 #' @author Dan Zhang
+#
 getIndustryType<-function(date,qtid=c(),CompanyCode=NULL,sw1=NULL,sw2=NULL,sw3=NULL,key){  
   args<-list(data='industryType',key=key)
   args[['date']]<-as.character(date)
@@ -75,6 +77,7 @@ getIndustryType<-function(date,qtid=c(),CompanyCode=NULL,sw1=NULL,sw2=NULL,sw3=N
 #' 
 #' @return data.frame
 #' @author Dan Zhang
+#
 getFinancialIndex<-function(qtid=c(),date=c(),key){  
   return(getDaily('financialIndex',qtid,date,key))
 }
@@ -86,6 +89,7 @@ getFinancialIndex<-function(qtid=c(),date=c(),key){
 #' 
 #' @return data.frame
 #' @author Dan Zhang
+#
 getTradingDay<-function(key){
   args<-list(data='tradingDay',key=key)
   df<-getData(args)
@@ -101,6 +105,7 @@ getTradingDay<-function(key){
 #' 
 #' @return data.frame
 #' @author Dan Zhang
+#
 getStockBeta<-function(qtid=c(),date=c(),key){
   return(getDaily('stockBeta',qtid,date,key))
 }
@@ -113,6 +118,7 @@ getStockBeta<-function(qtid=c(),date=c(),key){
 #' 
 #' @return data.frame
 #' @author Dan Zhang
+#
 getSecuritiesMargin<-function(date=c(),SecuMarket=NULL,key){  
   args<-list(data='securitiesMargin',key=key)
   df<-getData(args)
@@ -137,6 +143,7 @@ getSecuritiesMargin<-function(date=c(),SecuMarket=NULL,key){
 #' 
 #' @return data.frame
 #' @author Dan Zhang
+#
 getMktDaily<-function(qtid=c(),date=c(),key){
   return(getDaily('mktDaily',qtid,date,key))
 }
@@ -149,6 +156,7 @@ getMktDaily<-function(qtid=c(),date=c(),key){
 #' 
 #' @return data.frame
 #' @author Dan Zhang
+#
 getFwdMktDaily<-function(qtid=c(),date=c(),key){
   return(getDaily('mktFwdDaily',qtid,date,key))
 }
@@ -161,6 +169,7 @@ getFwdMktDaily<-function(qtid=c(),date=c(),key){
 #' 
 #' @return data.frame
 #' @author Dan Zhang
+#
 getMktDataIndex<-function(qtid=c(),date=c(),key){
   return(getDaily('mktDataIndex',qtid,date,key))
 }
@@ -175,6 +184,7 @@ getMktDataIndex<-function(qtid=c(),date=c(),key){
 #' 
 #' @return data.frame
 #' @author Dan Zhang
+#
 getDaily<-function(data,qtid=c(),date=c(),key){  
   args<-list(data=data,key=key)
   
@@ -227,6 +237,7 @@ getDaily<-function(data,qtid=c(),date=c(),key){
 #' 
 #' @return data.frame
 #' @author Dan Zhang
+#
 getData<-function(args){ 
   query<-compose_query(args)
   url<-paste(apiurl,'opendata',sep="/")

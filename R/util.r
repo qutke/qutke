@@ -1,5 +1,6 @@
-#' Utils
-#' @param elements list
+# Utils
+# @param elements list
+#
 compose_query <- function(elements) {
   if (length(elements) == 0)
     return("")
@@ -21,11 +22,13 @@ compose_query <- function(elements) {
   paste0(names, "=", values, collapse = "&")
 }
 
+#
 compact <- function(x) {
   null <- vapply(x, is.null, logical(1))
   x[!null]
 }
 
+#
 has_name <- function(x) {
   nms <- names(x)
   if (is.null(nms))
@@ -43,6 +46,7 @@ system <- function(x){
 
 #' qtid vector to character
 #' @param qtid character
+#
 qtid2String<-function(qtid=NULL){
   if(!is.null(qtid) & is.character(qtid) & length(qtid)>1){
     qtid<-paste(qtid,sep="",collapse=",")
@@ -51,6 +55,7 @@ qtid2String<-function(qtid=NULL){
 }
 #' qtid character to vector
 #' @param qtid character
+#
 qtid2c<-function(qtid=NULL){
   if(!is.null(qtid) & is.character(qtid) & length(qtid)<2){
     qtid<-unlist(strsplit(qtid,','))
