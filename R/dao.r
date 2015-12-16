@@ -13,7 +13,7 @@
 getKeyMap<-function(qtid=c(),SecuCode=NULL,CompanyCode=NULL,ChiName=NULL,SecuMarket=NULL,key){  
   
   if(is.null(qtid) & is.null(SecuCode) & is.null(CompanyCode) & is.null(ChiName) & is.null(SecuMarket)){
-    stop("Error: Need one parameter!")
+    stop("At least input one parameter qtid, SecuCode, CompanyCode, ChiName or SecuMarket.")
   }
   
   args<-list(data='keyMap',key=key)

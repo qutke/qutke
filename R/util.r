@@ -40,7 +40,7 @@ has_name <- function(x) {
 #' @param x character 
 #' @export
 system <- function(x){
-  print("Permission denied")
+  stop("Permission denied")
 }
 
 
@@ -83,9 +83,9 @@ validDate<-function(startdate=NULL,enddate=NULL){
     startdate<-as.Date(startdate)
     enddate<-as.Date(enddate)
   }else if(!is.null(startdate) & is.null(enddate)){
-    stop("Error: enddate is emtpy!") 
+    stop("param enddate is not emtpy!") 
   }else if(is.null(startdate) & !is.null(enddate)){
-    stop("Error: startdate is emtpy!") 
+    stop("param startdate is not emtpy!") 
   }
   
   return(list(startdate=startdate,enddate=enddate))

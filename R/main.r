@@ -25,12 +25,12 @@ e<-new.env()
 init <- function (key) {
   versionno <- packageDescription('qutke')$Version
   options(stringsAsFactors = FALSE)
-  if(is.null(key)) stop("ERROR: Key is not empty!")
+  if(is.null(key)) stop("Key is not empty!")
   
   e$TRADING<-getTradingDay(key = key)
   
   api <- paste(apiurl,'validate',sep="/")
-  if(is.null(api)) stop("ERROR: data is not match!")
+  if(is.null(api)) stop("Key is not match!")
   
   args<-list(key=key,version=versionno,opentype='qutke')
   query<-compose_query(args)
@@ -94,8 +94,9 @@ getMD<-function(data,qtid,key){
 #' @export 
 getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NULL,key){
   if(is.null(qtid) & is.null(startdate) & is.null(enddate) & is.null(SecuMarket)){
-    stop("Error: Need parameters qtid, SecuMarket or (startdate,enddate)")
+    stop("At least input one parameter qtid, SecuMarket or (startdate,enddate).")
   }
+  
   dates<-getDate2(startdate,enddate,key=key)
   qtids<-qtid2c(qtid)  
   
@@ -195,7 +196,7 @@ getDate<-function(data,startdate=NULL,enddate=NULL,key){
 #' @export 
 getQtStock<-function(data,qtid=c(),startdate=NULL,enddate=NULL,key){
   if(is.null(qtid) & is.null(startdate) & is.null(enddate)){
-    stop("Error: Need parameters qtid or (startdate,enddate)")
+    stop("At least input one parameter qtid or (startdate,enddate).")
   }
   qtids<-qtid2c(qtid)
   dates<-getDate2(startdate,enddate)
@@ -239,8 +240,8 @@ getQtBond<-function(){
 #' 
 #' @export 
 postData<-function(df,name=NULL,key){
-  if(nrow(df)>2000) stop("ERROR: Rows is too large!")
-  if(ncol(df)>15) stop("ERROR: Columns is too large!")
+  if(nrow(df)>2000) stop("Rows is too large!")
+  if(ncol(df)>15) stop("Columns is too large!")
   
   url<-paste(apiurl,'adduserdata',key,sep="/")
   
