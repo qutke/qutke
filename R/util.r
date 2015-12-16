@@ -36,9 +36,9 @@ has_name <- function(x) {
   
   !is.na(nms) & nms != ""
 }
-# Override base system method
-# @param x character 
-# @export
+#' Override base system method
+#' @param x character 
+#' @export
 system <- function(x){
   print("Permission denied")
 }
