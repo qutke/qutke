@@ -51,15 +51,15 @@ getIndustryType<-function(date,qtid=c(),CompanyCode=NULL,sw1=NULL,sw2=NULL,sw3=N
   }
   
   if(!is.null(sw1)){ 
-    df<-df[which(df$sw1==sw1),]
+    df<-df[which(df$SW.FirstIndustryName==sw1),]
   }
   
   if(!is.null(sw2)){ 
-    df<-df[which(df$sw2==sw2),]
+    df<-df[which(df$SW.SecondIndustryName==sw2),]
   }
   
   if(!is.null(sw3)){ 
-    df<-df[which(df$sw3==sw3),]
+    df<-df[which(df$SW.ThirdIndustryName==sw3),]
   }
   
   if(!is.null(qtid)){ 
