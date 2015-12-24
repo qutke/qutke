@@ -82,11 +82,11 @@ key&lt;-'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 init(key)</code></pre>
 </div>
 <div class="section level2">
-<h2>1. 市场行情数据</h2>
+<h2>市场行情数据</h2>
 <p>获取A股市场股票的行情数据API。</p>
 <pre><code>getDailyQuote(data, qtid, SecuMarket, startdate, enddate, key)</code></pre>
 <div id="---mktdaily" class="section level3">
-<h3>1.1 股票日间行情(不复权) - mktDaily</h3>
+<h3>股票日间行情(不复权) - mktDaily</h3>
 <pre><code>getDailyQuote(data='mktDaily',qtid=c('000001.SZ','000002.SZ'),key=key)
 getDailyQuote(data='mktDaily',startdate='2015-10-01',enddate='2015-10-10',key=key)</code></pre>
 <p><strong>参数</strong></p>
@@ -133,7 +133,7 @@ getDailyQuote(data='mktDaily',startdate='2015-10-01',enddate='2015-10-10',key=ke
 </tbody>
 </table>
 <p><strong>返回值</strong></p>
-<pre><code>&gt; getDailyQuote(data='mktDaily',startdate='2015-10-01',enddate='2015-10-10',key=key)
+<pre><code>getDailyQuote(data='mktDaily',startdate='2015-10-01',enddate='2015-10-10',key=key)
        qtid       date prevClose  open    hi    lo close   volume      value      ret   logRet    vwap
 1 000001.SZ 2015-10-08     10.49 10.85 10.89 10.70 10.70 49407085  533806134 0.020019 0.019821 10.8042
 2 000002.SZ 2015-10-08     12.73 13.25 13.32 13.03 13.07 82086235 1079570351 0.026709 0.026358 13.1517
@@ -214,7 +214,7 @@ getDailyQuote(data='mktDaily',startdate='2015-10-01',enddate='2015-10-10',key=ke
 </table>
 </div>
 <div id="---mktfwddaily" class="section level3">
-<h3>1.2 股票日间行情(前复权) - mktFwdDaily</h3>
+<h3>股票日间行情(前复权) - mktFwdDaily</h3>
 <pre><code>getDailyQuote(data='mktFwdDaily',qtid=c('000001.SZ','000002.SZ'),key=key)
 getDailyQuote(data='mktFwdDaily',startdate='2015-10-01',enddate='2015-10-10',key=key)</code></pre>
 <p><strong>参数</strong></p>
@@ -261,7 +261,7 @@ getDailyQuote(data='mktFwdDaily',startdate='2015-10-01',enddate='2015-10-10',key
 </tbody>
 </table>
 <p><strong>返回值</strong></p>
-<pre><code>&gt; getDailyQuote(data='mktFwdDaily',startdate='2015-10-01',enddate='2015-10-10',key=key)
+<pre><code>getDailyQuote(data='mktFwdDaily',startdate='2015-10-01',enddate='2015-10-10',key=key)
        qtid       date close   volume      value fwdAdj fwdAdjOpen fwdAdjHi fwdAdjLo fwdAdjClose      ret   logRet    vwap      vol30   ma5  ma10  ma20  ma60
 1 000001.SZ 2015-10-08 10.70 49407085  533806134      1      10.85    10.89    10.70       10.70 0.020019 0.019821 10.8042 2918758254 10.53 10.66 10.83 12.00
 2 000002.SZ 2015-10-08 13.07 82086235 1079570351      1      13.25    13.32    13.03       13.07 0.026709 0.026358 13.1517 3110409341 12.83 13.00 13.25 13.97
@@ -372,7 +372,7 @@ getDailyQuote(data='mktFwdDaily',startdate='2015-10-01',enddate='2015-10-10',key
 </table>
 </div>
 <div id="---mktdataindex" class="section level3">
-<h3>1.3 指数日间行情 - mktDataIndex</h3>
+<h3>指数日间行情 - mktDataIndex</h3>
 <pre><code>getDailyQuote(data='mktDataIndex',qtid=c('000001.SH','000002.SH'),key=key)
 getDailyQuote(data='mktDataIndex',startdate='2015-10-01',enddate='2015-10-10',key=key)</code></pre>
 <p><strong>参数</strong></p>
@@ -419,7 +419,7 @@ getDailyQuote(data='mktDataIndex',startdate='2015-10-01',enddate='2015-10-10',ke
 </tbody>
 </table>
 <p><strong>返回值</strong></p>
-<pre><code>&gt; getDailyQuote(data='mktDataIndex',startdate='2015-10-01',enddate='2015-10-10',key=key)
+<pre><code>getDailyQuote(data='mktDataIndex',startdate='2015-10-01',enddate='2015-10-10',key=key)
        qtid       date prevClose      open        hi        lo     close      volume        value      ret   logRet      vwap
 1 000001.SH 2015-10-08 3052.7814 3156.0747 3172.2814 3133.1266 3143.3573 23427605000 258830338655 0.029670 0.029238 11.048092
 2 000002.SH 2015-10-08 3197.3719 3305.7057 3322.6107 3281.5643 3292.2869 23347655200 258286294993 0.029685 0.029253 11.062622
@@ -500,7 +500,7 @@ getDailyQuote(data='mktDataIndex',startdate='2015-10-01',enddate='2015-10-10',ke
 </table>
 </div>
 <div id="---securitiesmargin" class="section level3">
-<h3>1.4 融资融券交易日间总量 - securitiesMargin</h3>
+<h3>融资融券交易日间总量 - securitiesMargin</h3>
 <pre><code>getDailyQuote(data='securitiesMargin',SecuMarket=90,key=key)
 getDailyQuote(data='securitiesMargin',startdate='2015-10-01',enddate='2015-10-10',key=key) </code></pre>
 <p><strong>参数</strong></p>
@@ -547,7 +547,7 @@ getDailyQuote(data='securitiesMargin',startdate='2015-10-01',enddate='2015-10-10
 </tbody>
 </table>
 <p><strong>返回值</strong></p>
-<pre><code>&gt; getDailyQuote(data='securitiesMargin',SecuMarket=90,key=key)
+<pre><code>getDailyQuote(data='securitiesMargin',SecuMarket=90,key=key)
              ID InfoSource TradingDay SecuMarket ReportPeriod FinanceValue FinanceBuyValue FinanceRefundValue SecurityValue SecuritySellVolume TradingValue FinaInTVRatio TVChangeRatio  TVChangeRatioHS  UpdateTime           JSID        SecurityVolume
 2  461925890068     深交所 2014-08-20         90            5 174787344145     16411051741                 NA    1633109695          181494836 176420453840      99.07431        1.1191   0.9877           2014-08-21 09:00:19 461926819300   462733489
 4  462012288739     深交所 2014-08-21         90            5 176790093199     16340018547                 NA    1586285318          169538019 178376378517      99.11071        1.1087   0.9365           2014-08-22 09:00:19 462013219501   429681365
@@ -619,11 +619,11 @@ getDailyQuote(data='securitiesMargin',startdate='2015-10-01',enddate='2015-10-10
 </div>
 </div>
 <div class="section level2">
-<h2>2. 股票行业分类</h2>
+<h2>股票行业分类</h2>
 <p>获取A股市场股票的行业分类数据API。</p>
 <pre><code>getIndustry(data, date, qtid, CompanyCode, key=key)</code></pre>
 <div id="---industrytype" class="section level3">
-<h3>2.1 申万行业分类，日间数据 - industryType</h3>
+<h3>申万行业分类，日间数据 - industryType</h3>
 <pre><code>getIndustry(data='industryType',date='2015-12-02',key=key)
 getIndustry(data='industryType',date='2015-12-02',qtid=c('000001.SZ','000002.SZ'),key=key)
 getIndustry(data='industryType',date='2015-12-02',CompanyCode=6,key=key)
@@ -690,7 +690,7 @@ getIndustry(data='industryType',date='2015-12-02',SW1='商业贸易',SW2='零售
 </tbody>
 </table>
 <p><strong>返回值</strong></p>
-<pre><code>&gt; head(getIndustry(data='industryType',date='2015-12-02',key=key))
+<pre><code>getIndustry(data='industryType',date='2015-12-02',key=key)
        qtid       date CompanyCode InnerCode SecuCode                      ChiName ChiNameAbbr                          EngName    EngNameAbbr SecuAbbr ChiSpelling SecuMarket ListedDate ListedSector ListedState XGRQ  SecuMarketChi  SecuCategoryChi ListedSectorChi ListedStateChi SW.FirstIndustryName SW.SecondIndustryName SW.ThirdIndustryName
 1 000001.SZ 2015-12-02           3        NA        1         平安银行股份有限公司    平安银行           Ping An Bank Co., Ltd.                平安银行        PAYH         NA         NA           NA          NA   NA 深圳证券交易所      A股            主板           上市             金融服务                  银行                 银行
 2 000002.SZ 2015-12-02           6        NA        2         万科企业股份有限公司        万科             China Vanke Co.,Ltd.          Vanke 万  科Ａ         WKA         NA         NA           NA          NA   NA 深圳证券交易所     A股            主板           上市               房地产            房地产开发           房地产开发
@@ -794,11 +794,11 @@ getIndustry(data='industryType',date='2015-12-02',SW1='商业贸易',SW2='零售
 </div>
 </div>
 <div class="section level2">
-<h2>3. 基础信息数据</h2>
+<h2>基础信息数据</h2>
 <p>获取基础数据函数API。</p>
 <pre><code>getMD(data, qtid, key)</code></pre>
 <div id="---keymap" class="section level3">
-<h3>1.1 股票指数的基本信息 - keyMap</h3>
+<h3>股票指数的基本信息 - keyMap</h3>
 <pre><code>getMD(data='keyMap',qtid=c('000001.SZ','000001.SH'),key=key)
 getMD(data='keyMap',qtid='000001.SZ,000001.SH',key=key)</code></pre>
 <p><strong>参数</strong></p>
@@ -833,7 +833,7 @@ getMD(data='keyMap',qtid='000001.SZ,000001.SH',key=key)</code></pre>
 </tbody>
 </table>
 <p><strong>返回值</strong></p>
-<pre><code>&gt; getMD(data='keyMap',qtid=c('000001.SZ','000001.SH'),key=key)
+<pre><code>getMD(data='keyMap',qtid=c('000001.SZ','000001.SH'),key=key)
        qtid InnerCode SecuCode CompanyCode                ChiName  ChiAbbr SecuMarket
 1 000001.SH         1        1           1 上海证券交易所综合指数 上证指数         SH
 2 000001.SZ         3        1           3   平安银行股份有限公司 平安银行         SZ</code></pre>
@@ -886,11 +886,11 @@ getMD(data='keyMap',qtid='000001.SZ,000001.SH',key=key)</code></pre>
 </div>
 </div>
 <div class="section level2">
-<h2>4. 交易日数据</h2>
+<h2>交易日数据</h2>
 <p>获取日期数据函数API。</p>
 <pre><code>getDate(data, startdate, enddate, key=key)</code></pre>
 <div id="a---tradingday" class="section level3">
-<h3>4.1 中国A股交易日期 - tradingDay</h3>
+<h3>中国A股交易日期 - tradingDay</h3>
 <pre><code>getDate(data='tradingDay',key=key)
 getDate(data='tradingDay',startdate='2015-10-10',enddate='2015-12-30',key=key)</code></pre>
 <p><strong>参数</strong></p>
@@ -931,17 +931,17 @@ getDate(data='tradingDay',startdate='2015-10-10',enddate='2015-12-30',key=key)</
 </tbody>
 </table>
 <p><strong>返回值</strong></p>
-<pre><code>&gt; getDate(data='tradingDay',startdate='2015-10-01',enddate='2015-10-30',key=key)
+<pre><code>getDate(data='tradingDay',startdate='2015-10-01',enddate='2015-10-30',key=key)
  [1] &quot;2015-10-08&quot; &quot;2015-10-09&quot; &quot;2015-10-12&quot; &quot;2015-10-13&quot; &quot;2015-10-14&quot; &quot;2015-10-15&quot; &quot;2015-10-16&quot; &quot;2015-10-19&quot; &quot;2015-10-20&quot; &quot;2015-10-21&quot;
 [11] &quot;2015-10-22&quot; &quot;2015-10-23&quot; &quot;2015-10-26&quot; &quot;2015-10-27&quot; &quot;2015-10-28&quot; &quot;2015-10-29&quot; &quot;2015-10-30&quot;   </code></pre>
 </div>
 </div>
 <div class="section level2">
-<h2>5. 况客整理数据。</h2>
+<h2>况客整理数据。</h2>
 <p>获取况客整理数据数据函数API。</p>
 <pre><code>getQtStock(data, qtid, startdate, enddate, key=key)</code></pre>
 <div id="---financialindex" class="section level3">
-<h3>5.1 股票财务日间数据 - financialIndex</h3>
+<h3>股票财务日间数据 - financialIndex</h3>
 <pre><code>getQtStock(data='financialIndex',qtid=c('000001.SZ','000002.SZ'),key=key)
 getQtStock(data='financialIndex',startdate='2015-10-12',enddate='2015-12-12',key=key)</code></pre>
 <p><strong>参数</strong></p>
@@ -988,7 +988,7 @@ getQtStock(data='financialIndex',startdate='2015-10-12',enddate='2015-12-12',key
 </tbody>
 </table>
 <p><strong>返回值</strong></p>
-<pre><code>&gt; head(getQtStock(data='financialIndex',startdate='2015-10-10',enddate='2015-10-12',key=key))
+<pre><code>getQtStock(data='financialIndex',startdate='2015-10-10',enddate='2015-10-12',key=key)
        qtid       date CompanyCode    EndDate NetAssetPS MainIncomePS CashFlowPS   NetProfit     EBITDA NetProfitRatio       ROA  ROECut DebtEquityRatio NetProfitGrowRate DividendPS  EPSTTM  ROETTM
 1 000001.SZ 2015-10-12           3 2014-12-31    11.4617       6.4252     0.2059 19802000000         NA      26.975629  0.971115 15.1500      1569.70271           30.0112      0.174  1.7332 16.2959
 2 000002.SZ 2015-10-12           6 2015-03-31     8.0500       0.8052    -2.1363   650232417 1228608451      10.209036  0.175557  0.7073       461.12701          -44.5761         NA  1.3458 16.7940
