@@ -3,7 +3,7 @@ qutke, R Package for Qutke project
 
 R Package for Qutke project provided by Qutke.com .
 
-http://qutkedoc.qutke.com
+https://console.qutke.com/api.html
 
 ## INSTALL
 
