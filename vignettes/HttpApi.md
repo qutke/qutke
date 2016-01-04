@@ -24,6 +24,49 @@ key<-'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 init(key)
 ```
 
+## 况客主数据
+
+获取基础数据函数API。
+
+```
+getMD(data, qtid, key)
+```
+   
+### 股票指数的基本信息 - keyMap
+
+```
+getMD(data='keyMap',qtid=c('000001.SZ','000001.SH'),key=key)
+getMD(data='keyMap',qtid='000001.SZ,000001.SH',key=key)
+```
+
+**参数**
+
+| 名称 |       类型       | 必填 |                      描述                     |
+|------|------------------|------|-----------------------------------------------|
+| data | character        | 必填 | 接口名                                        |
+| qtid | character/vector | 必填 | 证券/指数代码.市场，qtid个数不允许超过100个。 |
+| key  | character        | 必填 | 用户密钥                                      |
+
+**返回值**
+
+```
+getMD(data='keyMap',qtid=c('000001.SZ','000001.SH'),key=key)
+       qtid InnerCode SecuCode CompanyCode                ChiName  ChiAbbr SecuMarket
+1 000001.SH         1        1           1 上海证券交易所综合指数 上证指数         SH
+2 000001.SZ         3        1           3   平安银行股份有限公司 平安银行         SZ
+```
+
+|     名称    |    类型   |        描述        |
+|-------------|-----------|--------------------|
+| qtid        | character | 证券/指数代码.市场 |
+| InnerCode   | integer   | xxxx               |
+| SecuCode    | integer   | 证券/指数代码      |
+| CompanyCode | integer   | 公司代码           |
+| ChiName     | character | 公司/指数全称      |
+| ChiAbbr     | character | 公司/指数简称      |
+| SecuMarket  | character | 市场类型           |
+
+
 ## 市场行情数据
 
 获取A股市场股票的行情数据API。
@@ -41,13 +84,13 @@ getDailyQuote(data='mktDaily',startdate='2015-10-01',enddate='2015-10-10',key=ke
 
 **参数**
 
-名称  | 类型	| 必填 |  描述
---|--|--|--
-data | character	| 必填| 接口名
-qtid | character/vector	| 二选一，qitd和(startdate,enddate) | 证券/指数代码.市场，qtid个数不允许超过100个。
-startdate	| character/date | 二选一，qitd和(startdate,enddate) | 开始日期，startdate 和 enddate 必须同时出现
-enddate	|  character/date	| 二选一，qitd和(startdate,enddate) | 结束日期，startdate 和 startdate 必须同时出现
-key | character	| 必填 | 用户密钥
+| 名称      | 类型             | 必填                              | 描述                                          |
+| --        | --               | --                                | -  -                                          |
+| data      | character        | 必填                              | 接口名                                        |
+| qtid      | character/vector | 二选一，qitd和(startdate,enddate) | 证券/指数代码.市场，qtid个数不允许超过100个。 |
+| startdate | character/date   | 二选一，qitd和(startdate,enddate) | 开始日期，startdate 和 enddate 必须同时出现   |
+| enddate   | character/date   | 二选一，qitd和(startdate,enddate) | 结束日期，startdate 和 startdate 必须同时出现 |
+| key       | character        | 必填                              | 用户密钥                                      |
 
 
 **返回值**
@@ -63,20 +106,20 @@ getDailyQuote(data='mktDaily',startdate='2015-10-01',enddate='2015-10-10',key=ke
 6 000007.SZ 2015-10-08     29.17    NA    NA    NA 29.17        0          0       NA       NA      NA
 ```
 
-名称	| 类型	|  描述 
---|--|--
-qtid |	character	| 证券/指数代码.市场
-date |	character	| 交易日期
-prevClose |	numeric	| 上一交易日收盘价
-open |	numeric	| 当日开盘价
-hi |	numeric	| 当日最高价
-lo |	numeric	| 当日最低价
-close |	numeric	| 当日收盘价
-volume |	numeric	| 当日交易量
-value |	numeric	| 当日交易金额
-ret |	numeric	| 收益率
-logRet |	numeric	| 对数收益率
-vwap |	numeric | 成交量加权平均价(Volume Weighted Average Price)
+|    名称   |    类型   |                       描述                      |
+|-----------|-----------|-------------------------------------------------|
+| qtid      | character | 证券/指数代码.市场                              |
+| date      | character | 交易日期                                        |
+| prevClose | numeric   | 上一交易日收盘价                                |
+| open      | numeric   | 当日开盘价                                      |
+| hi        | numeric   | 当日最高价                                      |
+| lo        | numeric   | 当日最低价                                      |
+| close     | numeric   | 当日收盘价                                      |
+| volume    | numeric   | 当日交易量                                      |
+| value     | numeric   | 当日交易金额                                    |
+| ret       | numeric   | 收益率                                          |
+| logRet    | numeric   | 对数收益率                                      |
+| vwap      | numeric   | 成交量加权平均价(Volume Weighted Average Price) |
 
 ### 股票日间行情(前复权) - mktFwdDaily
 
@@ -87,13 +130,13 @@ getDailyQuote(data='mktFwdDaily',startdate='2015-10-01',enddate='2015-10-10',key
 
 **参数**
 
-名称	| 类型	| 必填 |  描述
---|--|--|--
-data | character	| 必填| 接口名
-qtid | character/vector	| 二选一，qitd和(startdate,enddate) | 证券/指数代码.市场，qtid个数不允许超过100个。
-startdate	| character/date | 二选一，qitd和(startdate,enddate) | 开始日期，startdate 和 enddate 必须同时出现
-enddate	|  character/date	| 二选一，qitd和(startdate,enddate) | 结束日期，startdate 和 startdate 必须同时出现
-key | character	| 必填 | 用户密钥
+|    名称   |       类型       |                必填               |                      描述                     |
+|-----------|------------------|-----------------------------------|-----------------------------------------------|
+| data      | character        | 必填                              | 接口名                                        |
+| qtid      | character/vector | 二选一，qitd和(startdate,enddate) | 证券/指数代码.市场，qtid个数不允许超过100个。 |
+| startdate | character/date   | 二选一，qitd和(startdate,enddate) | 开始日期，startdate 和 enddate 必须同时出现   |
+| enddate   | character/date   | 二选一，qitd和(startdate,enddate) | 结束日期，startdate 和 startdate 必须同时出现 |
+| key       | character        | 必填                              | 用户密钥                                      |
 
 
 **返回值**
@@ -109,26 +152,26 @@ getDailyQuote(data='mktFwdDaily',startdate='2015-10-01',enddate='2015-10-10',key
 6 000008.SZ 2015-10-08  8.60 19328027  166327043      1       8.56     8.71     8.41        8.60 0.036145 0.035507  8.6055  328420115  8.31  8.62  8.08    NA
 ```
 
-名称	| 类型	|  描述 
---|--|--
-qtid |	character	| 证券代码.市场指数代码
-date |	character	| 交易日期
-close	| numeric	| 当日收盘价
-volume | 	numeric	| 当日交易量
-value  | 	numeric	| 当日交易金额
-fwdAdj | 	numeric	| 当日最低价
-fwdAdjOpen | 	numeric	| 当日开盘价(前复权)
-fwdAdjHi | 	numeric	| 当日最高价(前复权)
-fwdAdjLo | 	numeric	| 当日最低价(前复权)
-fwdAdjClose | 	numeric	| 当日收盘价(前复权)
-ret | 	numeric	| 当日收益率(前复权)
-logRet | 	numeric	| 对数收益率(前复权)
-vwap | 	numeric	| 成交量加权平均价(Volume Weighted Average Price)
-vol30 | 	numeric	| 前30个交易日的交易量之和
-ma5 | 	numeric	| MACD5
-ma10 | 	numeric	| MACD10
-ma20 | 	numeric	| MACD20
-ma60 | 	numeric	| MACD60
+|     名称    |    类型   |                       描述                      |
+|-------------|-----------|-------------------------------------------------|
+| qtid        | character | 证券代码.市场指数代码                           |
+| date        | character | 交易日期                                        |
+| close       | numeric   | 当日收盘价                                      |
+| volume      | numeric   | 当日交易量                                      |
+| value       | numeric   | 当日交易金额                                    |
+| fwdAdj      | numeric   | 当日最低价                                      |
+| fwdAdjOpen  | numeric   | 当日开盘价(前复权)                              |
+| fwdAdjHi    | numeric   | 当日最高价(前复权)                              |
+| fwdAdjLo    | numeric   | 当日最低价(前复权)                              |
+| fwdAdjClose | numeric   | 当日收盘价(前复权)                              |
+| ret         | numeric   | 当日收益率(前复权)                              |
+| logRet      | numeric   | 对数收益率(前复权)                              |
+| vwap        | numeric   | 成交量加权平均价(Volume Weighted Average Price) |
+| vol30       | numeric   | 前30个交易日的交易量之和                        |
+| ma5         | numeric   | MACD5                                           |
+| ma10        | numeric   | MACD10                                          |
+| ma20        | numeric   | MACD20                                          |
+| ma60        | numeric   | MACD60                                          |
 
 
 ### 指数日间行情 - mktDataIndex
@@ -140,13 +183,13 @@ getDailyQuote(data='mktDataIndex',startdate='2015-10-01',enddate='2015-10-10',ke
 
 **参数**
 
-名称	| 类型	| 必填 |  描述
---|--|--|--
-data | character	| 必填| 接口名
-qtid | character/vector	| 二选一，qitd和(startdate,enddate) | 证券/指数代码.市场，qtid个数不允许超过100个。
-startdate	| character/date | 二选一，qitd和(startdate,enddate) | 开始日期，startdate 和 enddate 必须同时出现
-enddate	|  character/date	| 二选一，qitd和(startdate,enddate) | 结束日期，startdate 和 startdate 必须同时出现
-key | character	| 必填 | 用户密钥
+|    名称   |       类型       |                必填               |                      描述                     |
+|-----------|------------------|-----------------------------------|-----------------------------------------------|
+| data      | character        | 必填                              | 接口名                                        |
+| qtid      | character/vector | 二选一，qitd和(startdate,enddate) | 证券/指数代码.市场，qtid个数不允许超过100个。 |
+| startdate | character/date   | 二选一，qitd和(startdate,enddate) | 开始日期，startdate 和 enddate 必须同时出现   |
+| enddate   | character/date   | 二选一，qitd和(startdate,enddate) | 结束日期，startdate 和 startdate 必须同时出现 |
+| key       | character        | 必填                              | 用户密钥                                      |
 
 
 **返回值**
@@ -162,20 +205,20 @@ getDailyQuote(data='mktDataIndex',startdate='2015-10-01',enddate='2015-10-10',ke
 6 000006.SH 2015-10-08 5559.8878 5763.0101 5782.2787 5696.6139 5717.4068   483445800   4580517406 0.028331 0.027937  9.474728
 ```
 
-名称	| 类型	|  描述 
---|--|--
-qtid |	character	| 指数代码.市场
-date	| character	| 交易日期
-prevClose	 | numeric	| 上一交易日收盘点位
-open |	numeric	| 当日开盘点位
-hi |	numeric	| 当日最高点位
-lo |	numeric	| 当日最低点位
-close |	numeric	| 当日收盘点位
-volume |	numeric	| 当日交易量
-value |	numeric	| 当日交易金额
-ret |	numeric	| 收益率
-logRet |	numeric	| 对数收益率
-vwap |	numeric |	成交量加权平均价(Volume Weighted Average Price)
+|    名称   |    类型   |                       描述                      |
+|-----------|-----------|-------------------------------------------------|
+| qtid      | character | 指数代码.市场                                   |
+| date      | character | 交易日期                                        |
+| prevClose | numeric   | 上一交易日收盘点位                              |
+| open      | numeric   | 当日开盘点位                                    |
+| hi        | numeric   | 当日最高点位                                    |
+| lo        | numeric   | 当日最低点位                                    |
+| close     | numeric   | 当日收盘点位                                    |
+| volume    | numeric   | 当日交易量                                      |
+| value     | numeric   | 当日交易金额                                    |
+| ret       | numeric   | 收益率                                          |
+| logRet    | numeric   | 对数收益率                                      |
+| vwap      | numeric   | 成交量加权平均价(Volume Weighted Average Price) |
 
 
 ### 融资融券交易日间总量 - securitiesMargin
@@ -187,13 +230,13 @@ getDailyQuote(data='securitiesMargin',startdate='2015-10-01',enddate='2015-10-10
 
 **参数**
 
-名称	| 类型	| 必填 |  描述
---|--|--|--
-data | character	| 必填| 接口名
-SecuMarket | integer	| 二选一，SecuMarket和(startdate,enddate) | 证券市场
-startdate	| character/date | 二选一，SecuMarket和(startdate,enddate) | 开始日期，startdate 和 enddate 必须同时出现
-enddate	|  character/date	| 二选一，SecuMarket和(startdate,enddate) | 结束日期，startdate 和 startdate 必须同时出现
-key | character	| 必填 | 用户密钥
+|    名称    |      类型      |                   必填                  |                      描述                     |
+|------------|----------------|-----------------------------------------|-----------------------------------------------|
+| data       | character      | 必填                                    | 接口名                                        |
+| SecuMarket | integer        | 二选一，SecuMarket和(startdate,enddate) | 证券市场                                      |
+| startdate  | character/date | 二选一，SecuMarket和(startdate,enddate) | 开始日期，startdate 和 enddate 必须同时出现   |
+| enddate    | character/date | 二选一，SecuMarket和(startdate,enddate) | 结束日期，startdate 和 startdate 必须同时出现 |
+| key        | character      | 必填                                    | 用户密钥                                      |
 
 **返回值**
 
@@ -208,19 +251,19 @@ getDailyQuote(data='securitiesMargin',SecuMarket=90,key=key)
 12 462530738302     深交所 2014-08-27         90            5 183263199094     12104512169                 NA    1389626303          231029323 184652825397      99.24744        0.8269   0.7583           2014-08-28 08:55:36 462531335836   383104552         
 ```
 
-名称	| 类型	|  描述 
---|--|--
-InfoSource | character | 交易所
-TradingDay | character	| 交易日期
-SecuMarket | integer	| 证券市场
-FinanceValue |	numeric	| 融资余额(元),融资买进与归还借款间的差额; 当日融资余额=前日融资余额+当日融资买入额－当日融资偿还额;
-FinanceBuyValue |	numeric	| 融资买入额(元)
-SecurityValue |	numeric	| 融券余量(元),日融券余量=前日融券余量+当日融券卖出数量-当日融券偿还量
-SecuritySellVolume |	integer	| 融券卖出量(股)
-TradingValue |	numeric	| 融资融券交易总金额(元)=当日融资余额+当日融券余量金额
-FinaInTVRatio |	numeric	| 融资占融资融券总额比(FinaInTotalRatio) = (融资余额/融资融券交易总金额)*100
-TVChangeRatio |	numeric	| 融资融券总额变动(TVChangeRatio) =(本日的融资融券交易总金额/上一日的融资融券交易总金额-1)*100
-TVChangeRatioHS	| numeric	| 沪深融资融券总额变动(TVChangeRatioHS) =(沪深市场本日的融资融券交易总金额/沪深市场上一日的融资融券交易总金额-1)*100
+|        名称        |    类型   |                                                        描述                                                        |
+|--------------------|-----------|--------------------------------------------------------------------------------------------------------------------|
+| InfoSource         | character | 交易所                                                                                                             |
+| TradingDay         | character | 交易日期                                                                                                           |
+| SecuMarket         | integer   | 证券市场                                                                                                           |
+| FinanceValue       | numeric   | 融资余额(元),融资买进与归还借款间的差额; 当日融资余额=前日融资余额+当日融资买入额－当日融资偿还额;                 |
+| FinanceBuyValue    | numeric   | 融资买入额(元)                                                                                                     |
+| SecurityValue      | numeric   | 融券余量(元),日融券余量=前日融券余量+当日融券卖出数量-当日融券偿还量                                               |
+| SecuritySellVolume | integer   | 融券卖出量(股)                                                                                                     |
+| TradingValue       | numeric   | 融资融券交易总金额(元)=当日融资余额+当日融券余量金额                                                               |
+| FinaInTVRatio      | numeric   | 融资占融资融券总额比(FinaInTotalRatio) = (融资余额/融资融券交易总金额)*100                                         |
+| TVChangeRatio      | numeric   | 融资融券总额变动(TVChangeRatio) =(本日的融资融券交易总金额/上一日的融资融券交易总金额-1)*100                       |
+| TVChangeRatioHS    | numeric   | 沪深融资融券总额变动(TVChangeRatioHS) =(沪深市场本日的融资融券交易总金额/沪深市场上一日的融资融券交易总金额-1)*100 |
 
 
 ## 股票行业分类
@@ -242,16 +285,16 @@ getIndustry(data='industryType',date='2015-12-02',SW1='商业贸易',SW2='零售
 
 **参数**
 
-名称	| 类型	| 必填 |  描述 
---|--|--|--
-data | character	| 必填 | 接口名
-date | character/date	| 必填 | 日期
-qtid | character/vector	| 可选 | 证券/指数代码.市场，qtid个数不允许超过100个。
-CompanyCode	| integer	| 可选 | 公司代码
-SW1 | character	| 可选 | 一级行业分类
-SW2 | character	| 可选 | 二级行业分类
-SW3 | character	| 可选 | 三级行业分类           
-key | character	| 必填 | 用户密钥
+|     名称    |       类型       | 必填 |                      描述                     |
+|-------------|------------------|------|-----------------------------------------------|
+| data        | character        | 必填 | 接口名                                        |
+| date        | character/date   | 必填 | 日期                                          |
+| qtid        | character/vector | 可选 | 证券/指数代码.市场，qtid个数不允许超过100个。 |
+| CompanyCode | integer          | 可选 | 公司代码                                      |
+| SW1         | character        | 可选 | 一级行业分类                                  |
+| SW2         | character        | 可选 | 二级行业分类                                  |
+| SW3         | character        | 可选 | 三级行业分类                                  |
+| key         | character        | 必填 | 用户密钥                                      |
 
 **返回值**
 
@@ -263,68 +306,27 @@ getIndustry(data='industryType',date='2015-12-02',key=key)
 3 000004.SZ 2015-12-02          11        NA        4 深圳中国农大科技股份有限公司             Shenzhen Cau Technology Co.,Ltd. Cau Technology 国农科技        GNKJ         NA         NA           NA          NA   NA 深圳证券交易所         A股            主板           上市             医药生物              生物制品             生物制品     
 ```
 
-名称	| 类型	|  描述 
---|--|--
-qtid |	character	| 股票代码.市场
-CompanyCode	| integer	| 公司代码
-InnerCode | integer | xxxxxx
-SecuCode	| integer	| 证券代码
-ChiName	| character	| 公司名称
-ChiNameAbbr	| character	| 公司名称简称
-EngName	| character	| 公司英文名称
-EngNameAbbr |	character	| 公司英文名称简称
-SecuAbbr |	character	| 证券名称
-ChiSpelling |	character	| 证券名称拼音
-SecuMarketChi |	character	| 证券市场名称
-SecuCategoryChi |	character	| 股票类型
-ListedSectorChi |	character	| 版块名称
-ListedStateChi |	character	| 上市状态(上市.停牌.退市)
-SW.FirstInducharacteryName |	character |	申万一级行业
-SW.SecondInducharacteryName |	character |	申万二级行业
-SW.ThirdInducharacteryName |	character	| 申万三级行业
+|             名称            |    类型   |           描述           |
+|-----------------------------|-----------|--------------------------|
+| qtid                        | character | 股票代码.市场            |
+| CompanyCode                 | integer   | 公司代码                 |
+| InnerCode                   | integer   | xxxxxx                   |
+| SecuCode                    | integer   | 证券代码                 |
+| ChiName                     | character | 公司名称                 |
+| ChiNameAbbr                 | character | 公司名称简称             |
+| EngName                     | character | 公司英文名称             |
+| EngNameAbbr                 | character | 公司英文名称简称         |
+| SecuAbbr                    | character | 证券名称                 |
+| ChiSpelling                 | character | 证券名称拼音             |
+| SecuMarketChi               | character | 证券市场名称             |
+| SecuCategoryChi             | character | 股票类型                 |
+| ListedSectorChi             | character | 版块名称                 |
+| ListedStateChi              | character | 上市状态(上市.停牌.退市) |
+| SW.FirstInducharacteryName  | character | 申万一级行业             |
+| SW.SecondInducharacteryName | character | 申万二级行业             |
+| SW.ThirdInducharacteryName  | character | 申万三级行业             |
 
 
-## 基础信息数据
-
-获取基础数据函数API。
-
-```
-getMD(data, qtid, key)
-```
-   
-### 股票指数的基本信息 - keyMap
-
-```
-getMD(data='keyMap',qtid=c('000001.SZ','000001.SH'),key=key)
-getMD(data='keyMap',qtid='000001.SZ,000001.SH',key=key)
-```
-
-**参数**
-
-名称	| 类型	| 必填 |  描述 
---|--|--|--
-data | character	| 必填 | 接口名
-qtid | character/vector	|必填 | 证券/指数代码.市场，qtid个数不允许超过100个。
-key | character	| 必填 | 用户密钥
-
-**返回值**
-
-```
-getMD(data='keyMap',qtid=c('000001.SZ','000001.SH'),key=key)
-       qtid InnerCode SecuCode CompanyCode                ChiName  ChiAbbr SecuMarket
-1 000001.SH         1        1           1 上海证券交易所综合指数 上证指数         SH
-2 000001.SZ         3        1           3   平安银行股份有限公司 平安银行         SZ
-```
-
-名称	| 类型 | 描述 
---|--|--
-qtid |	character	| 证券/指数代码.市场
-InnerCode | integer | xxxx
-SecuCode	| integer |	证券/指数代码
-CompanyCode |	integer |	公司代码
-ChiName	| character	|公司/指数全称
-ChiAbbr	| character	| 公司/指数简称
-SecuMarket	| character |	市场类型
 
 
 ## 交易日数据
@@ -344,12 +346,12 @@ getDate(data='tradingDay',startdate='2015-10-10',enddate='2015-12-30',key=key)
 
 **参数**
 
-名称	| 类型	| 必填 |  描述 
---|--|--|--
-data | character	| 必填 | 接口名
-startdate	| character/date	| 选填 | 开始日期，startdate 和 enddate 必须同时出现
-enddate	|  character/date	| 选填 | 结束日期，startdate 和 startdate 必须同时出现
-key | character	| 必填 | 用户密钥
+|    名称   |      类型      | 必填 |                      描述                     |
+|-----------|----------------|------|-----------------------------------------------|
+| data      | character      | 必填 | 接口名                                        |
+| startdate | character/date | 选填 | 开始日期，startdate 和 enddate 必须同时出现   |
+| enddate   | character/date | 选填 | 结束日期，startdate 和 startdate 必须同时出现 |
+| key       | character      | 必填 | 用户密钥                                      |
 
 **返回值**
 
@@ -359,7 +361,7 @@ getDate(data='tradingDay',startdate='2015-10-01',enddate='2015-10-30',key=key)
 [11] "2015-10-22" "2015-10-23" "2015-10-26" "2015-10-27" "2015-10-28" "2015-10-29" "2015-10-30"   
 ```
 
-## 况客整理数据。
+## 况客数据。
 
 获取况客整理数据数据函数API。
 
@@ -376,13 +378,13 @@ getQtStock(data='financialIndex',startdate='2015-10-12',enddate='2015-12-12',key
 
 **参数**
 
-名称	| 类型	| 必填 |  描述 
---|--|--|--
-data | character	| 必填| 接口名
-qtid | character/vector	| 二选一，qitd和(startdate,enddate) | 证券/指数代码.市场，qtid个数不允许超过100个。
-startdate	| character/date | 二选一，qitd和(startdate,enddate) | 开始日期，startdate 和 enddate 必须同时出现
-enddate	|  character/date	| 二选一，qitd和(startdate,enddate) | 结束日期，startdate 和 startdate 必须同时出现
-key | character	| 必填 | 用户密钥
+|    名称   |       类型       |                必填               |                      描述                     |
+|-----------|------------------|-----------------------------------|-----------------------------------------------|
+| data      | character        | 必填                              | 接口名                                        |
+| qtid      | character/vector | 二选一，qitd和(startdate,enddate) | 证券/指数代码.市场，qtid个数不允许超过100个。 |
+| startdate | character/date   | 二选一，qitd和(startdate,enddate) | 开始日期，startdate 和 enddate 必须同时出现   |
+| enddate   | character/date   | 二选一，qitd和(startdate,enddate) | 结束日期，startdate 和 startdate 必须同时出现 |
+| key       | character        | 必填                              | 用户密钥                                      |
 
 
 **返回值**
@@ -398,23 +400,23 @@ getQtStock(data='financialIndex',startdate='2015-10-10',enddate='2015-10-12',key
 6 000007.SZ 2015-10-12          20 2015-03-31     1.5150       0.1202    -0.3113    -4866348   -4064499     -22.403920 -0.920644 -1.3312        90.99122            3.4055         NA -0.1312 -8.6006
 ```
 
-名称	| 类型	|  描述 
---|--|--
-qtid |	character |	股票代码.市场
-date |	character |	业务日期
-CompanyCode |	integer |	公司代码
-EndDate |	character |	财务报表日期(获取财务数据的报表日期:年报,半年报,季报)
-NetAssetPS |	numeric |	EPS,每股净收益
-MainIncomePS |	numeric |	每股主营业务收入
-CashFlowPS |	numeric |	每股现金流
-NetProfit |	numeric |	净利润
-EBITDA |	numeric |	EBITDA
-NetProfitRatio |	numeric |	净利润率,净收益(Net Income)/ 营业收入
-ROA |	numeric |	资产收益率 ,净利润/总资产
-ROECut |	numeric |	净资产收益率(摊薄-扣除)
-DebtEquityRatio |	numeric |	负债股权比率,负债总额/股东权益
-NetProfitGrowRate |	numeric |	净利率增长率
-DividendPS |	numeric |	每股分红
-EPSTTM |	numeric |	每股收益(TTM),每股收益(TTM)=净利润/期末总股本
-ROETTM |	numeric |	净资产收益率(TTM),净资产收益率＝(净利润(TTM)*2 /(期初股东权益+期末归股东权益)
+|        名称       |    类型   |                                      描述                                     |
+|-------------------|-----------|-------------------------------------------------------------------------------|
+| qtid              | character | 股票代码.市场                                                                 |
+| date              | character | 业务日期                                                                      |
+| CompanyCode       | integer   | 公司代码                                                                      |
+| EndDate           | character | 财务报表日期(获取财务数据的报表日期:年报,半年报,季报)                         |
+| NetAssetPS        | numeric   | EPS,每股净收益                                                                |
+| MainIncomePS      | numeric   | 每股主营业务收入                                                              |
+| CashFlowPS        | numeric   | 每股现金流                                                                    |
+| NetProfit         | numeric   | 净利润                                                                        |
+| EBITDA            | numeric   | EBITDA                                                                        |
+| NetProfitRatio    | numeric   | 净利润率,净收益(Net Income)/ 营业收入                                         |
+| ROA               | numeric   | 资产收益率 ,净利润/总资产                                                     |
+| ROECut            | numeric   | 净资产收益率(摊薄-扣除)                                                       |
+| DebtEquityRatio   | numeric   | 负债股权比率,负债总额/股东权益                                                |
+| NetProfitGrowRate | numeric   | 净利率增长率                                                                  |
+| DividendPS        | numeric   | 每股分红                                                                      |
+| EPSTTM            | numeric   | 每股收益(TTM),每股收益(TTM)=净利润/期末总股本                                 |
+| ROETTM            | numeric   | 净资产收益率(TTM),净资产收益率＝(净利润(TTM)*2 /(期初股东权益+期末归股东权益) |
 

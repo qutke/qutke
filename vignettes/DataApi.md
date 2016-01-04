@@ -346,3 +346,123 @@ getStockBeta用于获取股票的系统性风险及绝对回报(α系数,β系�
  | residStdErr | 残值                            |      |
 
 【注1】样本天数:60天数, 市场收益率以沪深300指数为标的指数;
+
+# 公司股本结构变动 (getStockShare)
+
+getShare获取上市公司股本结构历史变动情况。
+
+|    配置    |                    |
+|------------|--------------------|
+| 源库       | jydb1.LC_ShareStru |
+| 目标表     | share              |
+| 增量更新   | date               |
+| 唯一性约束 | CompanyCode,date   |
+
+
+  输入值
+
+|     名称    |   描述   | 必填 |      备注     |
+|-------------|----------|------|---------------|
+| CompanyCode | 证券代码 | 是   |               |
+| date        | 截止日期 | 是   | 特指：EndDate |
+
+
+  返回值
+
+ |           字段名           |                中文名                | 备注 |
+ |----------------------------|--------------------------------------|------|
+ | CompanyCode                | 公司代码                             |      |
+ | InfoSource                 | 信息来源                             |      |
+ | EndDate                    | 截止日期                             |      |
+ | InfoPublDate               | 信息发布日期                         |      |
+ | PerValue                   | 每股面值(元)                         |      |
+ |                            | 股本层次                             |      |
+ | TotalShares                | 总股本(股)                           |      |
+ | Ashares                    | 1.A股(股)                            |      |
+ | AFloats                    | 1)流通A股(股)                        |      |
+ | RestrictedAShares          | ①有限售条件的流通A股(股)             |      |
+ | NonRestrictedShares        | ②无限售条件流通A股(股)               |      |
+ | NonListedShares            | 2)未流通A股(股)                      |      |
+ | BsharesTotal               | 2.B股(股)                            |      |
+ | ListedBShares              | 1)流通B股(股)                        |      |
+ | NonListedRestrictedBShares | 2)未流通B股(股)                      |      |
+ | Hshares                    | 3.H股(股)                            |      |
+ | OtherFloatShares           | 4.海外上市股(股)                     |      |
+ | Sshares                    | 1)S股(股)                            |      |
+ | Nshares                    | 2)N股(股)                            |      |
+ |                            | 有限售股份（股改后披露格式）         |      |
+ | RestrictedShares           | 有限售条件的流通股(股)               |      |
+ | StateHolding               | A.国家持股(股)                       |      |
+ | SLegalPersonHolding        | B.国有法人持股(股)                   |      |
+ | OtherDCapitalHolding       | C.其他内资持股(股)                   |      |
+ | DLegalPersonHolding        | a.境内法人持股(股)                   |      |
+ | DNaturalPersonHolding      | b.境内自然人持股(股)                 |      |
+ | ManagementShares           | ##高管股(股)                         |      |
+ | ForeignHolding             | D.外资持股(股)                       |      |
+ | FLegalPersonHolding        | 其中：境外法人持股(股)               |      |
+ | FNaturalPersonHolding      | 其中：境外自然人持股(股)             |      |
+ | OtherRestrictedShares      | E.其他有限售 (股)                    |      |
+ |                            | 未流通股份（发行前或股改前披露格式） |      |
+ | PromoterShares             | 1.发起人股(股)                       |      |
+ | StateShares                | 国家股(股)                           |      |
+ | SLegalPersonShares         | 其中：国有法人股(股)                 |      |
+ | DLegalPersonShares         | 境内法人股(股)                       |      |
+ | FLegalPersonShares         | 外资法人股(股)                       |      |
+ | OtherPromoterShares        | 其它发起人股(股)                     |      |
+ | RaisedLPShares             | 2.募集法人股(股)                     |      |
+ | RaisedSLPShares            | 其中：募集国有法人股(股)             |      |
+ | NaturalPersonHoldLPShares  | 3.自然人法人股(股)                   |      |
+ | StaffShares                | 4.职工股(股)                         |      |
+ | RightsIssueTransferred     | 5.转配股(股)                         |      |
+ | PreferredAndOtherShares    | 6.优先股及其他(股)                   |      |
+ | PreferredShares            | 其中：优先股(股)                     |      |
+ | OtherFNonListedShares      | 7.其他外资股(股)                     |      |
+ |                            | 流通股份（股改前披露格式）           |      |
+ | FloatShare                 | 流通股份(股)                         |      |
+ | AFloatListed               | 1)已上市流通A股(包含高管股)(股)      |      |
+ | StategicInvestorShares     | 2)战略投资者配售持股(股)             |      |
+ | CommonLPShares             | 3)一般法人配售持股(股)               |      |
+ | MutualFundShares           | 4)基金配售持股(股)                   |      |
+ | AdditionalIssueUnlisted    | 5)增发未上市(股)                     |      |
+ | RightsIssueUnlisted        | 6)配股未上市(股)                     |      |
+ | OtherAFloatShares          | 7)其他流通股份(股)                   |      |
+ | RestrictedAFloatShares     | 8)有限售流通A股(股)                  |      |
+ | RestrinctStaffShares       | 其中：有限售流通股中职工股(股)       |      |
+ | Bshares                    | B股_旧(股)                           |      |
+ | NonListedBShares           | 其中：未流通B股_旧                   |      |
+ | RestrictedBFloatShares     | 有限售B股(股)                        |      |
+ | ForeignHoldingAshares      | 外资持A股(股)                        |      |
+ |                            | 股本变动说明                         |      |
+ | ChangeType                 | 股本变动原因类别                     | 注1  |
+ | ChangeReason               | 股本变动原因说明                     |      |
+ | XGRQ                       | 更新时间                             |      |
+
+【注1】股本变动原因类别（ChangeType）：1-A股发行；2-B股发行；3-A股发行基金配售上市；4-A股发行法人配售上市；6-A股上市；7-B股上市；8-送转股；10-配股除权；11-配股上市；12-转配股上市；18-非公开增发A股；19-定向增发法人股；20-增发A股；21-增发B股；22-增发A股上市；23-增发A股基金配售上市；24-增发A股法人配售上市；25-增发A股原股东配售上市；27-增发B股上市；30-国家股配售  35-股份回购；40-吸收合并；43-股份缩股；44-以股抵债；45-职工股上市；46-STAQ/NET系统法人股上市；47-外资法人股上市；48-可转换债券转股；49-股权转让；50-面值拆细；51-其他；71-股权分置方案实施；73-股权分置股份追送；75-股权分置限售流通；77-股权分置增持；78-股权分置股东增持股份上市；79-配股限售流通；80-股权激励限售流通；81-因权证行权流通；82-发行前股份限售流通；83-转债转股限售流通；89-延长限售锁定期。
+
+# CSI300指数成份股权重(getIndexWeight)
+
+getIndexWeight用于获取中证指数公司发布的“沪深300”指数的每日权重数据等。
+
+|    配置    |               |
+|------------|---------------|
+| 源库       | QT_Stock.indexWeight |
+| 目标表     | indexWeight     |
+| 增量更新   | date          |
+| 唯一性约束 | qtid,date     |
+
+  输入值
+
+|    名称    |   描述   | 必填 | 备注 |
+|------------|----------|------|------|
+| date       | 交易日期 | 是 |      |
+
+  返回值
+
+ |   名称  |    描述    | 备注 |
+ |---------|------------|------|
+ | indexID | 指数代码   |      |
+ | qtid    | 成分股代码 |      |
+ | date    | 交易日期   |      |
+ | weight  | 权重       |      |
+
+
