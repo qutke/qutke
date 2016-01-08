@@ -268,7 +268,7 @@ getQtBond<-function(){
 #' 
 #' @export 
 postData<-function(df,name=NULL,key){
-  if(nrow(df)>2000) stop("Rows is too large!")
+  if(nrow(df)>3000) stop("Rows is too large!")
   if(ncol(df)>15) stop("Columns is too large!")
   
   url<-paste(apiurl,'adduserdata',key,sep="/")
