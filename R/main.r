@@ -191,6 +191,7 @@ getDate<-function(data,startdate=NULL,enddate=NULL,key){
 #' getQtStock(data='stockBeta',startdate='2015-10-01',enddate='2015-10-10',key=key)
 #' getQtStock(data='financialIndex',qtid=c('000001.SZ','000002.SZ'),key=key)
 #' getQtStock(data='financialIndex',startdate='2015-10-10',enddate='2015-12-30',key=key)
+#' getQtStock(data='indexWeight',startdate='2015-10-10',enddate='2015-10-20',key=key)
 #' }
 #' 
 #' @export 
@@ -207,8 +208,35 @@ getQtStock<-function(data,qtid=c(),startdate=NULL,enddate=NULL,key){
   
   if(data=='financialIndex') {
     return(getFinancialIndex(qtid=qtid,date=dates,key=key))
-  } 
+  }
+  
+  if(data=='indexWeight') {
+    return(getIndexWeight(date=dates,key=key))
+  }
 
+  invisible()
+}
+
+#' Get Company Info
+#' @title Get Company Info
+#' @param data character
+#' @param CompanyCode character
+#' @param date character
+#' @param key character
+#' @author Yong Zhou
+#' 
+#' @examples
+#' \dontrun{
+#' getCompanyInfo(data='shareStru',CompanyCode='224448',date='2016-01-07',key=key)
+#' }
+#' 
+#' @export 
+getCompanyInfo<-function(data,CompanyCode,date,key){
+  
+  if(data=='shareStru') {
+    return(getStockShare(CompanyCode=CompanyCode,date=date,key=key))
+  }
+  
   invisible()
 }
 

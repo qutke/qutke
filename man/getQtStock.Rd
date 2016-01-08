@@ -26,6 +26,7 @@ getQtStock(data='stockBeta',qtid=c('000001.SZ','000002.SZ'),key=key)
 getQtStock(data='stockBeta',startdate='2015-10-01',enddate='2015-10-10',key=key)
 getQtStock(data='financialIndex',qtid=c('000001.SZ','000002.SZ'),key=key)
 getQtStock(data='financialIndex',startdate='2015-10-10',enddate='2015-12-30',key=key)
+getQtStock(data='indexWeight',startdate='2015-10-10',enddate='2015-10-20',key=key)
 }
 }
 \author{

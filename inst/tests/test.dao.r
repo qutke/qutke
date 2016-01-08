@@ -13,13 +13,8 @@ test_that("getKeyMap",{
 
 test_that("getTradingDay",{
   exp1<-getTradingDay(key=key)
-  expect_that(exp1,equals('SZ'))
-  
-  exp2<-getKeyMap(qtid='000001.SZ,000002.SZ',key=key)$CompanyCode
-  expect_that(exp2,equals(c(3,6)))
-  
-  expect_error(getKeyMap(key=key))
-}
+  expect_that(length(exp1),is_more_than(15000))
+})
 
 test_that("getMktDaily",{
   exp1<-getMktDaily(qtid=c('000001.SZ','000002.SZ'),key=key)
@@ -61,18 +56,32 @@ test_that("getSecuritiesMargin",{
   expect_that(nrow(exp3),equals(16))
 })
 
+test_that("getIndexWeight",{
+  exp1<-getIndexWeight(date=as.Date('2015-10-12')+0:1,key=key)
+  expect_that(as.character(unique(exp1$date)),equals(c('2015-10-12','2015-10-13')))
+  
+  expect_error(getIndexWeight(key=key))
+})
+
+test_that("getStockShare",{
+  exp1<-getStockShare(CompanyCode='224448',date='2016-01-07',key=key)
+  expect_that(as.character(unique(exp1$EndDate)),equals(c('2016-01-07')))
+  
+  expect_error(getStockShare(date='2015-10-12', key=key))
+  expect_error(getStockShare(key=key))
+})
 
 test_that("getIndustryType",{
   expect_error(getIndustryType(CompanyCode=6,key=key))
   
   exp1<-getIndustryType(date='2015-12-02',key=key)
-  expect_that(as.character(unique(exp1$qtid)),equals(c('000001.SZ','000002.SZ')))
+  expect_true(ncol(exp1)==23)
   
   exp2<-getIndustryType(date='2015-12-02',qtid=c('000001.SZ','000002.SZ'),key=key)
-  expect_that(unique(exp2$qtid),equals(c('000001.SZ','000002.SZ')))
+  expect_that(as.character(unique(exp2$qtid)),equals(c('000001.SZ','000002.SZ')))
   
   exp3<-getIndustryType(date='2015-12-02',CompanyCode=6,key=key)
-  expect_that(unique(exp3$qtid),equals('000002.SZ'))
+  expect_true(exp3$qtid=='000002.SZ')
 })
 
 test_that("getFinancialIndex",{

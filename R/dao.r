@@ -23,7 +23,24 @@ getKeyMap<-function(qtid=c(),SecuCode=NULL,CompanyCode=NULL,ChiName=NULL,SecuMar
   if(!is.null(ChiName)) args[['ChiName']]<-ChiName   
   if(!is.null(SecuMarket)) args[['SecuMarket']]<-SecuMarket   
   
-  return(getData(args))
+  #return(getData(args))
+  
+  if(!is.null(qtid)){
+    qtid<-qtid2c(qtid)
+    dl<-list()
+    for(x in qtid){
+      cat(x,fill=TRUE)
+      args[['qtid']]<-x
+      dl[[x]]<-getData(args)
+    }
+    
+    df<-do.call(rbind, lapply(dl, data.frame, stringsAsFactors=FALSE))
+    row.names(df)<-NULL
+    return(df)
+  }else{
+    return(getData(args))
+  }
+  invisible(NULL);
 }
 
 # Get getIndustryType data
@@ -130,6 +147,59 @@ getSecuritiesMargin<-function(date=c(),SecuMarket=NULL,key){
   
   if(!is.null(date)){ 
     df<-df[which(df$TradingDay %in% date),]
+  }
+  
+  return(df)
+}
+
+# Get getIndexWeight
+# @title Get getIndexWeight
+# @param date vector
+# @param key character
+# 
+# @return data.frame
+# @author Yong Zhou
+#
+getIndexWeight<-function(date=c(), key){
+  if(is.null(date)){
+    stop("Need to input parameter date")
+  }
+  
+  args<-list(data="indexWeight",key=key)
+  
+  dl<-list()
+  for(x in as.character(date)){
+    cat(x,fill=TRUE)
+    args[['date']]<-x
+    dl[[x]]<-getData(args)
+  }
+  
+  df<-do.call(rbind, lapply(dl, data.frame, stringsAsFactors=FALSE))
+  row.names(df)<-NULL
+  return(df)
+}
+
+# Get getStockShare
+# @title Get getStockShare
+# @param CompanyCode character require
+# @param date Date require
+# @param key character
+# 
+# @return data.frame
+# @author Yong Zhou
+#
+getStockShare<-function(CompanyCode, date, key){
+  if(is.null(date) & is.null(CompanyCode)){
+    stop("At least input one parameter CompanyCode or date")
+  }
+  
+  args<-list(data='shareStru',key=key)
+  args[['date']]<-as.character(date)
+  
+  df<-getData(args)
+  
+  if(!is.null(CompanyCode)) {
+    df<-df[which(df$CompanyCode==CompanyCode),]
   }
   
   return(df)
