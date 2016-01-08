@@ -44,6 +44,9 @@ qtstock1<-getQtStock(data='stockBeta',qtid=c('000001.SZ','000002.SZ'),key=key)
 qtstock2<-getQtStock(data='stockBeta',startdate='2015-10-01',enddate='2015-10-10',key=key)
 qtstock3<-getQtStock(data='financialIndex',qtid=c('000001.SZ','000002.SZ'),key=key)
 qtstock4<-getQtStock(data='financialIndex',startdate='2015-10-10',enddate='2015-12-30',key=key)
+qtstock5<-getQtStock(data='indexWeight',startdate='2015-10-10',enddate='2015-10-20',key=key)
+
+companyInfo1<-getCompanyInfo(data='shareStru',CompanyCode='224448',date='2016-01-07',key=key)
 
 stock1$date<-as.qtDate(stock1$date)
 postData(stock1,name='abc',key=key)
