@@ -39,6 +39,12 @@ init <- function (key) {
   result <- read.table(addr,sep=",",header=TRUE,fileEncoding = "utf-8", encoding = "utf-8")
   
   print(result$message)
+  
+  if(grepl('please upgrade', result$message)){
+    remove.packages("qutke")
+    print("upgrading ...")
+    install_github('qutke/qutke')
+  }
   invisible()
 }
 
