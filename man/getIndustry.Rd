@@ -2,7 +2,7 @@
 % Please edit documentation in R/main.r
 \name{getIndustry}
 \alias{getIndustry}
-\title{Get Date date}
+\title{Get Industry data}
 \usage{
 getIndustry(data, date, qtid = c(), CompanyCode = NULL, SW1 = NULL,
   SW2 = NULL, SW3 = NULL, key)
@@ -25,7 +25,7 @@ getIndustry(data, date, qtid = c(), CompanyCode = NULL, SW1 = NULL,
 \item{key}{character}
 }
 \description{
-Get Industry date
+Get Industry data
 }
 \examples{
 \dontrun{

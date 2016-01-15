@@ -37,6 +37,38 @@ test_that("getFwdMktDaily",{
   expect_that(as.character(unique(exp2$date)),equals(c('2015-10-12','2015-10-13')))
 })
 
+test_that("getFwdRet",{
+  exp1<-getFwdRet(qtid=c('000001.SZ','000002.SZ'),key=key)
+  expect_that(as.character(unique(exp1$qtid)),equals(c('000001.SZ','000002.SZ')))
+  
+  exp2<-getFwdRet(date=as.Date('2015-10-12')+0:1,key=key)
+  expect_that(as.character(unique(exp2$date)),equals(c('2015-10-12','2015-10-13')))
+})
+
+test_that("getFwdRetIndex",{
+  exp1<-getFwdRetIndex(qtid=c('000001.SH'),key=key)
+  expect_that(as.character(unique(exp1$qtid)),equals(c('000001.SH')))
+  
+  exp2<-getFwdRetIndex(date=as.Date('2015-10-12')+0:1,key=key)
+  expect_that(as.character(unique(exp2$date)),equals(c('2015-10-12','2015-10-13')))
+})
+
+test_that("getVolatility",{
+  exp1<-getVolatility(qtid=c('000001.SZ','000002.SZ'),key=key)
+  expect_that(as.character(unique(exp1$qtid)),equals(c('000001.SZ','000002.SZ')))
+  
+  exp2<-getVolatility(date=as.Date('2015-10-12')+0:1,key=key)
+  expect_that(as.character(unique(exp2$date)),equals(c('2015-10-12','2015-10-13')))
+})
+
+test_that("getThirdBoardQuote",{
+  exp1<-getThirdBoardQuote(qtid=c('835528.SH'),key=key)
+  expect_that(as.character(unique(exp1$qtid)),equals(c('835528.SH')))
+  
+  exp2<-getThirdBoardQuote(date=as.Date('2016-01-05')+0:2,key=key)
+  expect_that(as.character(unique(exp2$date)),equals(c('2016-01-05','2016-01-06','2016-01-07')))
+})
+
 test_that("getMktDataIndex",{
   exp1<-getMktDataIndex(qtid=c('000001.SH','000003.SH'),key=key)
   expect_that(as.character(unique(exp1$qtid)),equals(c('000001.SH','000003.SH')))

@@ -154,29 +154,28 @@ getSecuritiesMargin<-function(date=c(),SecuMarket=NULL,key){
 
 # Get getIndexWeight
 # @title Get getIndexWeight
+# @param qtid vector
 # @param date vector
 # @param key character
 # 
 # @return data.frame
 # @author Yong Zhou
 #
-getIndexWeight<-function(date=c(), key){
-  if(is.null(date)){
-    stop("Need to input parameter date")
-  }
-  
-  args<-list(data="indexWeight",key=key)
-  
-  dl<-list()
-  for(x in as.character(date)){
-    cat(x,fill=TRUE)
-    args[['date']]<-x
-    dl[[x]]<-getData(args)
-  }
-  
-  df<-do.call(rbind, lapply(dl, data.frame, stringsAsFactors=FALSE))
-  row.names(df)<-NULL
-  return(df)
+getIndexWeight<-function(qtid=c(), date=c(), key){
+  #if(is.null(date)){
+  #  stop("Need to input parameter date")
+  #}
+  #args<-list(data="indexWeight",key=key)
+  #dl<-list()
+  #for(x in as.character(date)){
+  #  cat(x,fill=TRUE)
+  #  args[['date']]<-x
+  #  dl[[x]]<-getData(args)
+  #}
+  #df<-do.call(rbind, lapply(dl, data.frame, stringsAsFactors=FALSE))
+  #row.names(df)<-NULL
+  #return(df)
+  return(getDaily('indexWeight',qtid,date,key))
 }
 
 # Get getStockShare
@@ -216,6 +215,58 @@ getStockShare<-function(CompanyCode, date, key){
 #
 getMktDaily<-function(qtid=c(),date=c(),key){
   return(getDaily('mktDaily',qtid,date,key))
+}
+
+# Get ThirdBoardQuote data
+# @title Get ThirdBoardQuote data
+# @param qtid vector
+# @param date vector
+# @param key character
+# 
+# @return data.frame
+# @author Yong Zhou
+#
+getThirdBoardQuote<-function(qtid=c(),date=c(),key){
+  return(getDaily('thirdBoardQuote',qtid,date,key))
+}
+
+# Get fwdRet data
+# @title Get fwdRet data
+# @param qtid vector
+# @param date vector
+# @param key character
+# 
+# @return data.frame
+# @author Yong Zhou
+#
+getFwdRet<-function(qtid=c(),date=c(),key){
+  return(getDaily('fwdRet',qtid,date,key))
+}
+
+# Get fwdRet Index data
+# @title Get fwdRet Index data
+# @param qtid vector
+# @param date vector
+# @param key character
+# 
+# @return data.frame
+# @author Yong Zhou
+#
+getFwdRetIndex<-function(qtid=c(),date=c(),key){
+  return(getDaily('fwdRet_Index',qtid,date,key))
+}
+
+# Get volatility data
+# @title Get volatility data
+# @param qtid vector
+# @param date vector
+# @param key character
+# 
+# @return data.frame
+# @author Yong Zhou
+#
+getVolatility<-function(qtid=c(),date=c(),key){
+  return(getDaily('volatility',qtid,date,key))
 }
 
 # Get FwdMktDaily data

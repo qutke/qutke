@@ -13,6 +13,8 @@ e<-new.env()
 
 #' Initiate the qutke project 
 #' @title Initiate
+#' @importFrom devtools install_github
+#' 
 #' @param key character
 #' @author Dan Zhang
 #' 
@@ -118,12 +120,24 @@ getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NUL
   if(data=='securitiesMargin') 
     return(getSecuritiesMargin(SecuMarket=SecuMarket,date=dates,key))
   
+  if(data=='thirdBoardQuote') 
+    return(getThirdBoardQuote(qtid=qtids,date=dates,key=key))
+  
+  if(data=='fwdRet') 
+    return(getFwdRet(qtid=qtids,date=dates,key=key))
+  
+  if(data=='fwdRet_Index') 
+    return(getFwdRetIndex(qtid=qtids,date=dates,key=key))
+  
+  if(data=='volatility') 
+    return(getVolatility(qtid=qtids,date=dates,key=key))
+  
   invisible()
 }
 
 
-#' Get Industry date
-#' @title Get Date date
+#' Get Industry data
+#' @title Get Industry data
 #' @param data character
 #' @param qtid vector
 #' @param date Date
@@ -150,6 +164,63 @@ getIndustry<-function(data,date,qtid=c(),CompanyCode=NULL,SW1=NULL,SW2=NULL,SW3=
   }
   
   invisible()
+}
+
+#' Get Industry FirstIndustryNames
+#' @title Get Industry FirstIndustryNames
+#' @param industryDF data.frame
+#' @author Yong Zhou
+#' 
+#' @examples
+#' \dontrun{
+#' getSW1(industryDF=YourIndustryDataFrame)
+#' }
+#' 
+#' @export 
+getSW1 <- function(industryDF)
+{
+  if(is.null(industryDF$SW.FirstIndustryName)){
+    stop("Make sure that your dataframe are industry-DataFrame.")
+  }
+  return(unique(industryDF$SW.FirstIndustryName));
+}
+
+#' Get Industry SecondIndustryNames
+#' @title Get Industry SecondIndustryNames
+#' @param industryDF data.frame
+#' @author Yong Zhou
+#' 
+#' @examples
+#' \dontrun{
+#' getSW1(industryDF=YourIndustryDataFrame)
+#' }
+#' 
+#' @export 
+getSW2 <- function(industryDF)
+{
+  if(is.null(industryDF$SW.SecondIndustryName)){
+    stop("Make sure that your dataframe are industry-DataFrame.")
+  }
+  return(unique(industryDF$SW.SecondIndustryName));
+}
+
+#' Get Industry ThirdIndustryNames
+#' @title Get Industry ThirdIndustryNames
+#' @param industryDF data.frame
+#' @author Yong Zhou
+#' 
+#' @examples
+#' \dontrun{
+#' getSW1(industryDF=YourIndustryDataFrame)
+#' }
+#' 
+#' @export 
+getSW3 <- function(industryDF)
+{
+  if(is.null(industryDF$SW.ThirdIndustryName)){
+    stop("Make sure that your dataframe are industry-DataFrame.")
+  }
+  return(unique(industryDF$SW.ThirdIndustryName));
 }
 
 #' Get Date date
@@ -197,6 +268,7 @@ getDate<-function(data,startdate=NULL,enddate=NULL,key){
 #' getQtStock(data='stockBeta',startdate='2015-10-01',enddate='2015-10-10',key=key)
 #' getQtStock(data='financialIndex',qtid=c('000001.SZ','000002.SZ'),key=key)
 #' getQtStock(data='financialIndex',startdate='2015-10-10',enddate='2015-12-30',key=key)
+#' getQtStock(data='indexWeight',qtid=c('000001.SZ','000002.SZ'),key=key)
 #' getQtStock(data='indexWeight',startdate='2015-10-10',enddate='2015-10-20',key=key)
 #' }
 #' 
@@ -217,7 +289,7 @@ getQtStock<-function(data,qtid=c(),startdate=NULL,enddate=NULL,key){
   }
   
   if(data=='indexWeight') {
-    return(getIndexWeight(date=dates,key=key))
+    return(getIndexWeight(qtid=qtid,date=dates,key=key))
   }
 
   invisible()
