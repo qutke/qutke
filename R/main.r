@@ -13,7 +13,6 @@ e<-new.env()
 
 #' Initiate the qutke project 
 #' @title Initiate
-#' @importFrom devtools install_github
 #' 
 #' @param key character
 #' @author Dan Zhang
@@ -42,11 +41,11 @@ init <- function (key) {
   
   print(result$message)
   
-  if(grepl('please upgrade', result$message)){
-    remove.packages("qutke")
-    print("upgrading ...")
-    install_github('qutke/qutke')
-  }
+  #if(grepl('please upgrade', result$message)){
+    #remove.packages("qutke")
+    #print("upgrading ...")
+    #install_github('qutke/qutke')
+  #}
   invisible()
 }
 
