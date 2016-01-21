@@ -269,6 +269,82 @@ getVolatility<-function(qtid=c(),date=c(),key){
   return(getDaily('volatility',qtid,date,key))
 }
 
+# Get BlockTradingIntent data
+# @title Get BlockTradingIntent data
+# @param qtid vector
+# @param date vector
+# @param key character
+# 
+# @return data.frame
+# @author Yong Zhou
+#
+getBlockTradingIntent<-function(qtid=c(),date=c(),key){
+  return(getDaily('blockTradingIntent',qtid,date,key))
+}
+
+# Get SpotTransaction data
+# @title Get SpotTransaction data
+# @param ProductCode vector
+# @param date vector
+# @param key character
+# 
+# @return data.frame
+# @author Yong Zhou
+#
+getSpotTransaction<-function(ProductCode=c(),date=c(),key){
+  return(getDaily('spotTransaction',ProductCode,date,key,'ProductCode'))
+}
+
+# Get InterestRateIndex
+# @title Get InterestRateIndex
+# @param date vector
+# @param key character
+# 
+# @return data.frame
+# @author Yong Zhou
+#
+getInterestRateIndex<-function(date=c(), key){
+  if(is.null(date)){
+   stop("Need to input parameter date")
+  }
+  args<-list(data="interestRateIndex",key=key)
+  dl<-list()
+  for(x in as.character(date)){
+   cat(x,fill=TRUE)
+   args[['date']]<-x
+   dl[[x]]<-getData(args)
+  }
+  df<-do.call(rbind, lapply(dl, data.frame, stringsAsFactors=FALSE))
+  row.names(df)<-NULL
+  return(df)
+}
+
+# Get FundsPerformance data
+# @title Get FundsPerformance data
+# @param qtid vector
+# @param date vector
+# @param key character
+# 
+# @return data.frame
+# @author Yong Zhou
+#
+getFundsPerformance<-function(qtid=c(),date=c(),key){
+  return(getDaily('fundsPerformance',qtid,date,key))
+}
+
+# Get NewestPerformance data
+# @title Get NewestPerformance data
+# @param qtid vector
+# @param date vector
+# @param key character
+# 
+# @return data.frame
+# @author Yong Zhou
+#
+getStockNewestPerformance<-function(qtid=c(),date=c(),key){
+  return(getDaily('stockNewestPerformance',qtid,date,key))
+}
+
 # Get FwdMktDaily data
 # @title Get FwdMktDaily data
 # @param qtid vector
@@ -302,11 +378,12 @@ getMktDataIndex<-function(qtid=c(),date=c(),key){
 # @param qtid vector
 # @param date vector
 # @param key character
+# @param codeColName character
 # 
 # @return data.frame
 # @author Dan Zhang
 #
-getDaily<-function(data,qtid=c(),date=c(),key){  
+getDaily<-function(data,qtid=c(),date=c(),key,codeColName='qtid'){  
   args<-list(data=data,key=key)
   
   dl<-list()
@@ -314,7 +391,7 @@ getDaily<-function(data,qtid=c(),date=c(),key){
     if(length(qtid)<=length(date)){
       for(x in as.character(qtid)){
         cat(x,fill=TRUE)
-        args[['qtid']]<-x
+        args[[codeColName]]<-x
         dl[[x]]<-getData(args)
         dl[[x]]<-dl[[x]][which(as.Date(dl[[x]]$date) %in% date),]
       }
@@ -324,7 +401,7 @@ getDaily<-function(data,qtid=c(),date=c(),key){
         cat(x,fill=TRUE)
         args[['date']]<-x
         dl[[x]]<-getData(args)
-        dl[[x]]<-dl[[x]][which(dl[[x]]$qtid %in% qtid),]
+        dl[[x]]<-dl[[x]][which(dl[[x]]$codeColName %in% qtid),]
       }
     }    
   }
@@ -333,7 +410,7 @@ getDaily<-function(data,qtid=c(),date=c(),key){
   if(!is.null(qtid) & is.null(date)){
     for(x in as.character(qtid)){
       cat(x,fill=TRUE)
-      args[['qtid']]<-x
+      args[[codeColName]]<-x
       dl[[x]]<-getData(args)
     }
   }  

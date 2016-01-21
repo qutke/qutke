@@ -28,7 +28,7 @@ init <- function (key) {
   options(stringsAsFactors = FALSE)
   if(is.null(key)) stop("Key is not empty!")
   
-  e$TRADING<-getTradingDay(key = key)
+  #e$TRADING<-getTradingDay(key = key)
   
   api <- paste(apiurl,'validate',sep="/")
   if(is.null(api)) stop("Key is not match!")
@@ -83,6 +83,7 @@ getMD<-function(data,qtid,key){
 #' @param startdate Date
 #' @param enddate Date
 #' @param SecuMarket character
+#' @param ProductCode vector
 #' @param key character
 #' @author Dan Zhang
 #' 
@@ -99,13 +100,14 @@ getMD<-function(data,qtid,key){
 #' }
 #' 
 #' @export 
-getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NULL,key){
-  if(is.null(qtid) & is.null(startdate) & is.null(enddate) & is.null(SecuMarket)){
-    stop("At least input one parameter qtid, SecuMarket or (startdate,enddate).")
+getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NULL,ProductCode=c(),key){
+  if(is.null(qtid) & is.null(startdate) & is.null(enddate) & is.null(SecuMarket) & is.null(ProductCode)){
+    stop("At least input one parameter qtid, SecuMarket, ProductCode or (startdate,enddate).")
   }
   
   dates<-getDate2(startdate,enddate,key=key)
-  qtids<-qtid2c(qtid)  
+  qtids<-qtid2c(qtid)
+  productCodes<-qtid2c(ProductCode)
   
   if(data=='mktDaily') 
     return(getMktDaily(qtid=qtids,date=dates,key=key))    
@@ -130,6 +132,21 @@ getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NUL
   
   if(data=='volatility') 
     return(getVolatility(qtid=qtids,date=dates,key=key))
+  
+  if(data=='blockTradingIntent') 
+    return(getBlockTradingIntent(qtid=qtids,date=dates,key=key))
+  
+  if(data=='spotTransaction') 
+    return(getSpotTransaction(ProductCode=productCodes,date=dates,key=key))
+  
+  if(data=='interestRateIndex') 
+    return(getInterestRateIndex(date=dates,key=key))
+  
+  if(data=='fundsPerformance') 
+    return(getFundsPerformance(qtid=qtids,date=dates,key=key))
+  
+#   if(data=='stockNewestPerformance') 
+#     return(getStockNewestPerformance(qtid=qtids,date=dates,key=key))
   
   invisible()
 }
@@ -163,63 +180,6 @@ getIndustry<-function(data,date,qtid=c(),CompanyCode=NULL,SW1=NULL,SW2=NULL,SW3=
   }
   
   invisible()
-}
-
-#' Get Industry FirstIndustryNames
-#' @title Get Industry FirstIndustryNames
-#' @param industryDF data.frame
-#' @author Yong Zhou
-#' 
-#' @examples
-#' \dontrun{
-#' getSW1(industryDF=YourIndustryDataFrame)
-#' }
-#' 
-#' @export 
-getSW1 <- function(industryDF)
-{
-  if(is.null(industryDF$SW.FirstIndustryName)){
-    stop("Make sure that your dataframe are industry-DataFrame.")
-  }
-  return(unique(industryDF$SW.FirstIndustryName));
-}
-
-#' Get Industry SecondIndustryNames
-#' @title Get Industry SecondIndustryNames
-#' @param industryDF data.frame
-#' @author Yong Zhou
-#' 
-#' @examples
-#' \dontrun{
-#' getSW1(industryDF=YourIndustryDataFrame)
-#' }
-#' 
-#' @export 
-getSW2 <- function(industryDF)
-{
-  if(is.null(industryDF$SW.SecondIndustryName)){
-    stop("Make sure that your dataframe are industry-DataFrame.")
-  }
-  return(unique(industryDF$SW.SecondIndustryName));
-}
-
-#' Get Industry ThirdIndustryNames
-#' @title Get Industry ThirdIndustryNames
-#' @param industryDF data.frame
-#' @author Yong Zhou
-#' 
-#' @examples
-#' \dontrun{
-#' getSW1(industryDF=YourIndustryDataFrame)
-#' }
-#' 
-#' @export 
-getSW3 <- function(industryDF)
-{
-  if(is.null(industryDF$SW.ThirdIndustryName)){
-    stop("Make sure that your dataframe are industry-DataFrame.")
-  }
-  return(unique(industryDF$SW.ThirdIndustryName));
 }
 
 #' Get Date date

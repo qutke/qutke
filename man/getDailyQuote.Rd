@@ -5,7 +5,7 @@
 \title{Get Daily Quote}
 \usage{
 getDailyQuote(data, qtid = c(), startdate = NULL, enddate = NULL,
-  SecuMarket = NULL, key)
+  SecuMarket = NULL, ProductCode = c(), key)
 }
 \arguments{
 \item{data}{character}
@@ -17,6 +17,8 @@ getDailyQuote(data, qtid = c(), startdate = NULL, enddate = NULL,
 \item{enddate}{Date}
 
 \item{SecuMarket}{character}
+
+\item{ProductCode}{vector}
 
 \item{key}{character}
 }
