@@ -107,7 +107,7 @@ getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NUL
   
   dates<-getDate2(startdate,enddate,key=key)
   qtids<-qtid2c(qtid)
-  productCodes<-qtid2c(ProductCode)
+  productCodes<-qtid2c(qtid=ProductCode)
   
   if(data=='mktDaily') 
     return(getMktDaily(qtid=qtids,date=dates,key=key))    
