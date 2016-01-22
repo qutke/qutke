@@ -48,6 +48,8 @@ stock21<-getDailyQuote(data='interestRateIndex',startdate='2015-06-18',enddate='
 stock22<-getDailyQuote(data='interestRateIndex',startdate='2015-06-20',enddate='2016-01-20',key=key)
 stock23<-getDailyQuote(data='fundsPerformance',qtid=c('510060.SH','510070.SH'),key=key)
 stock24<-getDailyQuote(data='fundsPerformance',startdate='2016-01-01',enddate='2016-01-20',key=key)
+stock25<-getDailyQuote(data='tradingCapitalFlow',qtid=c('510060.SH','510070.SH'),key=key)
+stock26<-getDailyQuote(data='tradingCapitalFlow',startdate='2016-01-11',enddate='2016-01-12',key=key)
 
 industry1<-getIndustry(data='industryType',date='2015-12-02',key=key)
 industry2<-getIndustry(data='industryType',date='2015-12-02',qtid=c('000001.SZ','000002.SZ'),key=key)
