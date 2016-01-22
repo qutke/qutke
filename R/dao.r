@@ -345,6 +345,19 @@ getStockNewestPerformance<-function(qtid=c(),date=c(),key){
   return(getDaily('stockNewestPerformance',qtid,date,key))
 }
 
+# Get TradingCapitalFlow data
+# @title Get TradingCapitalFlow data
+# @param qtid vector
+# @param date vector
+# @param key character
+# 
+# @return data.frame
+# @author Yong Zhou
+#
+getTradingCapitalFlow<-function(qtid=c(),date=c(),key){
+  return(getDaily('tradingCapitalFlow',qtid,date,key))
+}
+
 # Get FwdMktDaily data
 # @title Get FwdMktDaily data
 # @param qtid vector

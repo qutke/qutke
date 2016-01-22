@@ -145,6 +145,9 @@ getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NUL
   if(data=='fundsPerformance') 
     return(getFundsPerformance(qtid=qtids,date=dates,key=key))
   
+  if(data=='tradingCapitalFlow') 
+    return(getTradingCapitalFlow(qtid=qtids,date=dates,key=key))
+  
 #   if(data=='stockNewestPerformance') 
 #     return(getStockNewestPerformance(qtid=qtids,date=dates,key=key))
   

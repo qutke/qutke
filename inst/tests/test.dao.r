@@ -98,6 +98,14 @@ test_that("getFundsPerformance",{
   expect_that(as.character(unique(exp2$date)),equals(c('2016-01-20')))
 })
 
+test_that("getTradingCapitalFlow",{
+  exp1<-getTradingCapitalFlow(qtid=c('600291.SH','600317.SH'),key=key)
+  expect_that(as.character(unique(exp1$qtid)),equals(c('600291.SH','600317.SH')))
+  
+  exp2<-getTradingCapitalFlow(date=as.Date('2014-07-22')+0:1,key=key)
+  expect_that(as.character(unique(exp2$date)),equals(c('2014-07-22','2014-07-23')))
+})
+
 test_that("getMktDataIndex",{
   exp1<-getMktDataIndex(qtid=c('000001.SH','000003.SH'),key=key)
   expect_that(as.character(unique(exp1$qtid)),equals(c('000001.SH','000003.SH')))
