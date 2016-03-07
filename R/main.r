@@ -246,7 +246,8 @@ getQtStock<-function(data,qtid=c(),startdate=NULL,enddate=NULL,key){
     stop("At least input one parameter qtid or (startdate,enddate).")
   }
   qtids<-qtid2c(qtid)
-  dates<-getDate2(startdate,enddate)
+  #dates<-getDate2(startdate,enddate)
+  dates<-getDate2(startdate,enddate,key=key)
   
   if(data=='stockBeta') {
     return(getStockBeta(qtid=qtid,date=dates,key=key))
@@ -261,7 +262,7 @@ getQtStock<-function(data,qtid=c(),startdate=NULL,enddate=NULL,key){
   }
   
   if(data=='volatility') {
-    return(getVolatility(qtid=qtid,date=dates,key=key))
+    return(getVolatility(qtid=qtids,date=dates,key=key))
   }
 
   stop("table '", data, "' is unsupport!");
