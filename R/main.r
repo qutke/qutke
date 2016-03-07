@@ -130,8 +130,8 @@ getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NUL
   if(data=='fwdRet_Index') 
     return(getFwdRetIndex(qtid=qtids,date=dates,key=key))
   
-  if(data=='volatility') 
-    return(getVolatility(qtid=qtids,date=dates,key=key))
+  #if(data=='volatility') 
+  #  return(getVolatility(qtid=qtids,date=dates,key=key))
   
   if(data=='blockTradingIntent') 
     return(getBlockTradingIntent(qtid=qtids,date=dates,key=key))
@@ -154,6 +154,7 @@ getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NUL
   if(data=='overseaLPDailyQuote') 
     return(getOverseaLPDailyQuote(qtid=qtids,date=dates,key=key))
   
+  stop("table '", data, "' is unsupport!")
   invisible()
 }
 
@@ -185,6 +186,7 @@ getIndustry<-function(data,date,qtid=c(),CompanyCode=NULL,SW1=NULL,SW2=NULL,SW3=
     return(getIndustryType(date=date,qtid=qtid,CompanyCode=CompanyCode,sw1=SW1,sw2=SW2,sw3=SW3,key=key))
   }
   
+  stop("table '", data, "' is unsupport!");
   invisible()
 }
 
@@ -215,6 +217,7 @@ getDate<-function(data,startdate=NULL,enddate=NULL,key){
     return(e$TRADING)
   }
   
+  stop("table '", data, "' is unsupport!");
   invisible()
 }
 
@@ -256,7 +259,12 @@ getQtStock<-function(data,qtid=c(),startdate=NULL,enddate=NULL,key){
   if(data=='indexWeight') {
     return(getIndexWeight(qtid=qtid,date=dates,key=key))
   }
+  
+  if(data=='volatility') {
+    return(getVolatility(qtid=qtid,date=dates,key=key))
+  }
 
+  stop("table '", data, "' is unsupport!");
   invisible()
 }
 
@@ -280,6 +288,7 @@ getCompanyInfo<-function(data,CompanyCode,date,key){
     return(getStockShare(CompanyCode=CompanyCode,date=date,key=key))
   }
   
+  stop("table '", data, "' is unsupport!");
   invisible()
 }
 
