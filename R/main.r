@@ -148,8 +148,11 @@ getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NUL
   if(data=='tradingCapitalFlow') 
     return(getTradingCapitalFlow(qtid=qtids,date=dates,key=key))
   
-#   if(data=='stockNewestPerformance') 
-#     return(getStockNewestPerformance(qtid=qtids,date=dates,key=key))
+  if(data=='stockNewestPerformance') 
+     return(getStockNewestPerformance(qtid=qtids,date=dates,key=key))
+  
+  if(data=='overseaLPDailyQuote') 
+    return(getOverseaLPDailyQuote(qtid=qtids,date=dates,key=key))
   
   invisible()
 }
