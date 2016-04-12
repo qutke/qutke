@@ -5,7 +5,7 @@
 \title{Get Industry data}
 \usage{
 getIndustry(data, date, qtid = c(), CompanyCode = NULL, SW1 = NULL,
-  SW2 = NULL, SW3 = NULL, key)
+  SW2 = NULL, SW3 = NULL, qtind = NULL, key)
 }
 \arguments{
 \item{data}{character}
@@ -21,6 +21,8 @@ getIndustry(data, date, qtid = c(), CompanyCode = NULL, SW1 = NULL,
 \item{SW2}{character}
 
 \item{SW3}{character}
+
+\item{qtind}{character}
 
 \item{key}{character}
 }

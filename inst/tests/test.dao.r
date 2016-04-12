@@ -165,5 +165,28 @@ test_that("getFinancialIndex",{
   expect_that(nrow(exp3),equals(4))
 })
 
+test_that("getSwsIndexL1",{
+  exp1<-getSwsIndexL1(key=key)
+  expect_that(length(exp1),is_more_than(20))
+})
+
+test_that("getIndexWeight_SWS",{
+  exp1<-getIndexWeight_SWS(qtid=c('000001.SZ','000002.SZ'),key=key)
+  expect_that(as.character(unique(exp1$qtid)),equals(c('000001.SZ','000002.SZ')))
+  
+  exp2<-getIndexWeight_SWS(qtid=c('000001.SZ','000002.SZ'),date='2015-12-02',key=key)
+  expect_that(as.Date(unique(exp2$date)),equals(as.Date('2015-12-02')))
+  
+  exp3<-getIndexWeight_SWS(qtid=c('000001.SZ','000002.SZ'),date='2015-12-02',qtind='801180',key=key)
+  expect_that(as.character(unique(exp3$qtind)),equals('801180'))
+})
+
+test_that("getMktData_SWSIndex",{
+  exp1<-getMktData_SWSIndex(qtid=c('801890'),key=key)
+  expect_that(as.character(unique(exp1$qtid)),equals(c('801890')))
+  
+  exp2<-getMktData_SWSIndex(qtid=c('801890'),date='2015-12-02',key=key)
+  expect_that(as.Date(unique(exp2$date)),equals(as.Date('2015-12-02')))
+})
 
 

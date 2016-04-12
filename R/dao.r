@@ -86,6 +86,72 @@ getIndustryType<-function(date,qtid=c(),CompanyCode=NULL,sw1=NULL,sw2=NULL,sw3=N
   return(df)
 }
 
+# Get getSwsIndexL1 data
+# @title Get swsIndexL1 data
+# 
+# @param key character require
+# 
+# @return data.frame
+# @author Yong Zhou
+#
+getSwsIndexL1<-function(key){  
+  args<-list(data='swsIndexL1',key=key)
+  df<-getData(args)
+  
+  return(df)
+}
+
+# Get getIndexWeight_SWS data
+# @title Get indexWeight_SWS data
+# 
+# @param date Date require
+# @param qtid vector
+# @param qtind character
+# @param key character require
+# 
+# @return data.frame
+# @author Yong Zhou
+#
+getIndexWeight_SWS<-function(date,qtid=c(),qtind=NULL,key){  
+  args<-list(data='indexWeight_SWS',key=key)
+  args[['date']]<-as.character(date)
+  
+  df<-getData(args)
+  
+  if(!is.null(qtid)){ 
+    df<-df[which(df$qtid %in% qtid),]
+  }
+  
+  if(!is.null(qtind)){ 
+    df<-df[which(df$qtind==qtind),]
+  }
+  
+  return(df)
+}
+
+# Get getMktData_SWSIndex data
+# @title Get mktData_SWSIndex data
+# 
+# @param date Date require
+# @param qtid vector
+# @param key character require
+# 
+# @return data.frame
+# @author Yong Zhou
+#
+getMktData_SWSIndex<-function(date,qtid=c(),key){
+  args<-list(data='mktData_SWSIndex',key=key)
+  args[['date']]<-as.character(date)
+  
+  df<-getData(args)
+  
+  if(!is.null(qtid)){ 
+    df<-df[which(df$qtid %in% qtid),]
+  }
+  
+  return(df)
+}
+
 # Get getFinancialIndex data
 # @title Get getFinancialIndex data
 # @param qtid vector

@@ -6,7 +6,7 @@ Authors@R: c(
     person("Dan", "Zhang", role = c("aut", "cre"), email = "zhangd@qutke.com"),
     person("Yong", "Zhou", role = "aut", email = "zhouy@qutke.com")
     )
-Version: 0.9
+Version: 1.0
 Depends:
     R (>= 3.1.1)
 Imports:

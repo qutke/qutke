@@ -168,6 +168,7 @@ getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NUL
 #' @param SW1 character
 #' @param SW2 character
 #' @param SW3 character
+#' @param qtind character
 #' @param key character
 #' @author Dan Zhang
 #' 
@@ -179,11 +180,23 @@ getDailyQuote<-function(data,qtid=c(),startdate=NULL,enddate=NULL,SecuMarket=NUL
 #' }
 #' 
 #' @export 
-getIndustry<-function(data,date,qtid=c(),CompanyCode=NULL,SW1=NULL,SW2=NULL,SW3=NULL,key){
+getIndustry<-function(data,date,qtid=c(),CompanyCode=NULL,SW1=NULL,SW2=NULL,SW3=NULL,qtind=NULL,key){
   qtids<-qtid2c(qtid)  
   
   if(data=='industryType') {
     return(getIndustryType(date=date,qtid=qtid,CompanyCode=CompanyCode,sw1=SW1,sw2=SW2,sw3=SW3,key=key))
+  }
+  
+  if(data=='swsIndexL1') {
+    return(getSwsIndexL1(key=key))
+  }
+  
+  if(data=='indexWeight_SWS') {
+    return(getIndexWeight_SWS(date=date,qtid=qtid,qtind=qtind,key=key))
+  }
+  
+  if(data=='mktData_SWSIndex') {
+    return(getMktData_SWSIndex(date=date,qtid=qtid,key=key))
   }
   
   stop("table '", data, "' is unsupport!");
