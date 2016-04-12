@@ -58,7 +58,7 @@ industry2<-getIndustry(data='industryType',date='2015-12-02',qtid=c('000001.SZ',
 industry3<-getIndustry(data='industryType',date='2015-12-02',CompanyCode=6,key=key)
 industry4<-getIndustry(data='swsIndexL1',key=key)
 industry6<-getIndustry(data='mktData_SWSIndex',date='2015-12-02',qtid=c('801890','801770'),key=key)
-industry5<-getIndustry(data='indexWeight_SWS',date='2015-12-02',qtind='801180',qtid=c('000001.SZ','000002.SZ'),key=key)
+industry7<-getIndustry(data='indexWeight_SWS',date='2015-12-02',qtind='801180',qtid=c('000001.SZ','000002.SZ'),key=key)
 
 date1<-getDate(data='tradingDay',key=key)
 date2<-getDate(data='tradingDay',startdate='2015-10-10',enddate='2015-12-30',key=key)
