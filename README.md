@@ -72,9 +72,5 @@ qtstock6<-getQtStock(data='indexWeight',startdate='2015-10-10',enddate='2015-10-
 
 companyInfo1<-getCompanyInfo(data='shareStru',CompanyCode='224448',date='2016-01-07',key=key)
 
-stock1$date<-as.qtDate(stock1$date)
-postData(stock1,name='abc',key=key)
-postData(industry0,name='industry0',key=key)
-
 ```
 
